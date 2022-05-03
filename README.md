@@ -33,6 +33,8 @@ Pontos á serem entregues semana que vem:
  - criar o servidor;
 
 
+ZenHub team link <Vai expirar em dois dias me avisem caso nao consigam usar>
+https://app.zenhub.com/workspaces/rojao-13-tiro-627127c901c92c00195e8359/reports/overview?invite=GDfkmCEPbkXZsR6iL9GeTnJh
 
 <div>
  colaboração de: 
@@ -48,5 +50,3 @@ Pontos á serem entregues semana que vem:
    <br>
 </div>
 
-ZenHub team link <Vai expirar em dois dias me avisem caso nao consigam usar>
-https://app.zenhub.com/workspaces/rojao-13-tiro-627127c901c92c00195e8359/reports/overview?invite=GDfkmCEPbkXZsR6iL9GeTnJh
