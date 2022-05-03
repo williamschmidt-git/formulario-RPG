@@ -43,7 +43,7 @@ Pontos á serem entregues semana que vem:
   <a href="https://www.linkedin.com/in/vreksidler/" name="victor1" id="victor">
   <label for="victor1"> Victor Reksidler </label>
    <br>
-   <a href="https://www.linkedin.com/in/williamschmidtsantos/" name="william1" id="william">
+   <a href="https://www.linkedin.com/in/williamschmidtsantos/" name="william1" id="william"/>
   <label for="william1">  William Schmidt </label>
    <br>
 </div>
