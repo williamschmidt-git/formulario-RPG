@@ -3,6 +3,10 @@
  <div>
   Este projeto é um gerenciador de fichas de RPG de mesa, com o intuito de facilitar a criação de personagens 
   e gerenciamento de campanhas de Vampiro: A Máscara, entre outros.
+
+  Ferramentas produtividade:
+	- Loom ( extensao chrome)
+	- Zenhub for Github(Extensao chrome)
  </div>
 
  <br>
