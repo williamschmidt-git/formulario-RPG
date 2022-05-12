@@ -7,6 +7,11 @@
   Ferramentas produtividade:
 	- Loom ( extensao chrome)
 	- Zenhub for Github(Extensao chrome)
+	
+  Cerimonias:
+	- Sprint planning - a cada duas semanas na sexta (8:00 pm)
+	- Standup - toda segunda e quarta
+
  </div>
 
  <br>
