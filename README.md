@@ -4,19 +4,22 @@
   Este projeto é um gerenciador de fichas de RPG de mesa, com o intuito de facilitar a criação de personagens 
   e gerenciamento de campanhas de Vampiro: A Máscara, entre outros.
 
-  Ferramentas produtividade:
-	- Loom ( extensao chrome)
-	- Zenhub for Github(Extensao chrome)
-	
-  Cerimonias:
-	- Sprint planning - a cada duas semanas na sexta (8:00 pm)
-	- Standup - toda segunda e quarta
+  
 
  </div>
 
  <br>
  
  - Tecnologias envolvidas:
+ -------------------------------
+ 	- Cerimônias:
+		- Sprint planning - a cada duas semanas na sexta (8:00 pm);
+		- Standup - toda segunda e quarta;
+-------------------------------
+	- Ferramentas produtividade:
+		- Loom;
+		- Zenhub for Github;
+	
  ------------------------------
 	 - frontend: 
 		  - React;
@@ -34,7 +37,6 @@
 		  - TDD;
 		  - express;
 		  - NodeJs;
-   
 
 Pontos á serem entregues semana que vem:
  - Página de login;
