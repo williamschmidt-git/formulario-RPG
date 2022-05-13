@@ -2,7 +2,7 @@
 
 // import { healthCheck } from "./routes/healthCheck";
 import di from "./di";
-import { healthCheck } from "./routes/healthCheck";
+import { healthCheck } from "./route/healthCheck";
 
 // const app = express();
 

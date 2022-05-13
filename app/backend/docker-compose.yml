@@ -8,9 +8,13 @@ services:
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_DB=rpg-manager
     ports:
-      - "5432:5432"
+      - "5234:5234"
     volumes:
       - db:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD", "lsof", "-t", "-i:5234"]
+      timeout: 10s
+      retries: 5
 volumes:
   db:
     driver: local
