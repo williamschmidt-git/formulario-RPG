@@ -1,20 +1,60 @@
 version: "3.3"
 services:
-  db:
+  auth:
+    image: jboss/keycloak:latest
+    ports:
+      - "8080:8080"
+      - "6379:6379"
+    # apparently this is not necessary, from what I researched, the swarm mode on this build will eventually try a few times to build this even if its out of order, so no need to add a depend to ensure the order to be respect, although, we should ensure that this behaviour on dev or other enviromments is the same.
+    # depends_on:
+    #   auth-db:
+    #     condition: service_healthy
+    environment:
+      - DB_VENDOR=POSTGRES
+      - DB_ADDR=auth-db
+      - DB_DATABASE=auth-db
+      - DB_USER=postgres
+      - DB_SCHEMA=public
+      - DB_PASSWORD=auth-pass
+      - KEYCLOAK_USER=keycloak-user
+      - KEYCLOAK_PASSWORD=keycloak-pass
+      - "JAVA_OPTS_APPEND=-Dkeycloak.profile.feature.upload_scripts=enabled -Dkeycloak.profile.feature.token_exchange=enabled -Dkeycloak.profile.feature.admin_fine_grained_authz=enabled"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9990"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  auth-db:
+    image: postgres:14.1-alpine
+    environment:
+      - POSTGRES_PASSWORD=auth-pass
+      - POSTGRES_DB=auth-db
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    volumes:
+      - ./postgres-auth-data:/var/lib/postgresql/data/pgdata
+    ports:
+      - "8200:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  backend-db:
     image: postgres:14.1-alpine
     restart: always
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_DB=rpg-manager
-    ports:
-      - "5234:5234"
+      - PGDATA=/var/lib/postgresql/data/pgdata
     volumes:
-      - db:/var/lib/postgresql/data
+      - ./postgres-auth-data:/var/lib/postgresql/data/pgdata
+    ports:
+      - "8100:5432"
     healthcheck:
-      test: ["CMD", "lsof", "-t", "-i:5234"]
-      timeout: 10s
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
       retries: 5
-volumes:
-  db:
-    driver: local
