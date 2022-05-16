@@ -1,6 +1,3 @@
-// import { config } from "dotenv";
-
-// import { healthCheck } from "./routes/healthCheck";
 import di from "./di";
 import { healthCheck } from "./route/healthCheck";
 
