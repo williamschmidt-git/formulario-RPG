@@ -2,7 +2,6 @@ import { DataSource } from "typeorm";
 import { DotConfig } from "./util/config/Config";
 import { Application } from "express";
 import express = require("express");
-import cors from "cors";
 import { AppDataSource } from "./util/config/data-source";
 import { healthCheckService } from "./service/healthCheck";
 require("dotenv").config();
