@@ -27,6 +27,8 @@
     "dev": "nodemon --exec ts-node src/server.ts",
     "prod": "ts-node dist/server.js",
     "typeorm": "typeorm-ts-node-commonjs",
-    "test": "ts-mocha src/test/**/*.ts"
+    "test": "ts-mocha src/test/**/*.ts",
+    "build": "tsc -p .",
+    "lint": "eslint '*/**/*.{js,ts,tsx}' --fix"
   }
 }
