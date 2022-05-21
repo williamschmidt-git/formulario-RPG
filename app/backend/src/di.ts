@@ -1,24 +1,28 @@
-import { DataSource } from "typeorm";
-import { DotConfig } from "./util/config/Config";
-import { Application } from "express";
-import express = require("express");
-import cors from "cors";
-import { AppDataSource } from "./util/config/data-source";
-import { healthCheckService } from "./service/healthCheck";
-require("dotenv").config();
+import { DataSource } from 'typeorm';
+import { Application } from 'express';
+import express = require('express');
+// import * as cors from 'cors';
+import { DotConfig } from './util/config/Config';
+import AppDataSource from './util/config/data-source';
+import { HealthCheckService } from './service/healthCheck';
+
+import 'dotenv/config';
 
 class DependencyInjector {
   private readonly _app: Application;
+
   private readonly _env: DotConfig;
+
   private _databaseConn: DataSource;
-  private _healthCheckService: healthCheckService;
+
+  private _healthCheckService: HealthCheckService;
 
   constructor(env: DotConfig) {
     this._env = env;
     this._app = express();
-    this._healthCheckService = new healthCheckService();
+    this._healthCheckService = new HealthCheckService();
 
-    //this._app.use(cors());
+    // this._app.use(cors());
     this._databaseConn = AppDataSource(this._env);
   }
 
@@ -34,7 +38,7 @@ class DependencyInjector {
     return this._databaseConn;
   }
 
-  get healthCheckService(): healthCheckService {
+  get healthCheckService(): HealthCheckService {
     return this._healthCheckService;
   }
 }
