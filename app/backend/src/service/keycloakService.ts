@@ -2,7 +2,7 @@ import { Axios } from 'axios';
 import di from '../di';
 import HttpStatusCode from '../enum/HttpStatusCode';
 import { RawToken, UserKeycloak } from '../model/Auth';
-import { UserLogin } from '../model/User';
+import { UserLoginInput } from '../model/User';
 import { DotConfig } from '../util/config/Config';
 const querystring = require('querystring');
 
@@ -118,20 +118,16 @@ export class KeycloakService {
         return user;
     }
 
-    async login(userCredentials: UserLogin) {
-        try {
-            const url = `${this._env.KEYCLOAK_AUTH_URL}realms/${this._env.KEYCLOAK_REALM}/protocol/openid-connect/token`;
-            const headers = { 'Content-type': 'application/x-www-form-urlencoded' };
-            const form = querystring.stringify({
-                client_id: 'admin-cli',
-                username: userCredentials.email,
-                password: userCredentials.password,
-                grant_type: 'password',
-            });
-            const token = await this._axios.post(url, form, { headers });
-            console.log(token);
-        } catch (error) {
-            console.log(error);
-        }
+    async login(userCredentials: UserLoginInput) {
+        const url = `${this._env.KEYCLOAK_AUTH_URL}realms/${this._env.KEYCLOAK_REALM}/protocol/openid-connect/token`;
+        const headers = { 'Content-type': 'application/x-www-form-urlencoded' };
+        const form = querystring.stringify({
+            client_id: 'admin-cli',
+            client_secret: this._env.KEYCLOAK_ADMIN_SECRET,
+            username: userCredentials.email,
+            password: userCredentials.password,
+            grant_type: 'password',
+        });
+        return (await this._axios.post<RawToken>(url, form, { headers })).data;
     }
 }

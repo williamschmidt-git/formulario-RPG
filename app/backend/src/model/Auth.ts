@@ -65,11 +65,12 @@ export interface UserKeycloak {
 }
 
 export interface UserAuthenticated {
-    id: number;
+    id: string;
     firstName: string;
     lastName: string;
     email: string;
     createdAt: Date;
     lastLogin: Date;
     active: boolean;
+    tokens: RawToken;
 }

@@ -3,6 +3,9 @@ import { UserKeycloak } from '../model/Auth';
 import { User } from '../orm/entities/User';
 
 export class UserService {
+    updateUser(user: User) {
+        di.db.manager.save(User, user);
+    }
     async createUser(keycloakUser: UserKeycloak) {
         const user = new User();
         user.id = keycloakUser.id;

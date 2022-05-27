@@ -1,8 +1,9 @@
+import { UserAuthenticated } from './../model/Auth';
 import express = require('express');
 
 import di from '../di';
 import HttpStatusCode from '../enum/HttpStatusCode';
-import { UserInput, UserLogin } from '../model/User';
+import { UserInput, UserLoginInput } from '../model/User';
 
 const router = express.Router();
 
@@ -30,9 +31,26 @@ router.post('/create_user', async (req, res) => {
     }
 });
 router.post('/login', async (req, res) => {
-    const userCredentials: UserLogin = req.body;
-    const keycloak = await di.keycloakService.login(userCredentials);
-    res.send('oi');
+    const userCredentials: UserLoginInput = req.body;
+    const token = await di.keycloakService.login(userCredentials);
+    if (token) {
+        const user = await di.userService.findUserByEmail(userCredentials.email);
+        user.lastLogin = new Date();
+        const userDetails: UserAuthenticated = {
+            id: user.id,
+            email: user.email,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            active: user.active,
+            createdAt: user.createdAt,
+            lastLogin: user.lastLogin,
+            tokens: token,
+        };
+        di.userService.updateUser(user);
+        res.json(userDetails).status(HttpStatusCode.ACCEPTED);
+    } else {
+        res.send('User Not Found').status(HttpStatusCode.NOT_FOUND);
+    }
 });
 
 export { router as userRoute };
