@@ -1,6 +1,6 @@
 import { KeycloakService } from './service/keycloakService';
 import { UserService } from './service/userService';
-import { DataSource, getRepository } from 'typeorm';
+import { DataSource } from 'typeorm';
 import { DotConfig } from './util/config/Config';
 import { Application } from 'express';
 import express = require('express');
@@ -10,8 +10,6 @@ import axios = require('axios');
 import keycloak, { memoryStore } from './util/config/Keycloak';
 import cors = require('cors');
 import session = require('express-session');
-import { CompleteKeyGrant } from './model/Auth';
-import { User } from './orm/entities/User';
 
 require('dotenv').config();
 
