@@ -49,33 +49,6 @@ class DependencyInjector {
         this._userService = new UserService();
     }
 
-    // private async __contextResolver(req: GrantedRequest, connection: any) {
-    //     if (!!connection) {
-    //         if (connection.context) {
-    //             return connection.context;
-    //         }
-    //         return { user: null, kauth: null };
-    //     }
-
-    //     if (this._env.NODE_ENV === 'test') {
-    //         const user = await getRepository(User).findOne({
-    //             id: req.header('user-id'),
-    //         });
-    //         return { user: user, kauth: user ? {} : null };
-    //     }
-
-    //     const kauth = new KeycloakContext({ req });
-    //     if (!kauth.accessToken) {
-    //         // >> This is empty if accessToken is expired
-    //         return { user: null, kauth: null };
-    //     }
-    //     const user = await getRepository(User).findOne({
-    //         email: (kauth.accessToken as any as CompleteKeyGrant['access_token']).content.email,
-    //     });
-
-    //     return { user: user, kauth: kauth };
-    // }
-
     get app(): Application {
         return this._app;
     }
