@@ -1,15 +1,11 @@
-import di from "./di";
-import { healthCheck } from "./route/healthCheck";
+import di from './di';
+import { healthCheck } from './route/healthCheck';
+import { routes } from './route/routes';
+import { userRoute } from './route/user';
 
-// const app = express();
-
-// app.use(express.json());
-// app.use(healthCheck);
-// app.listen(8080, () => {
-//   console.log("Server is listening on port: 8080 ");
-// });
 console.log(di.env.DATABASE_HOST);
 di.app.listen(di.env.SERVER_PORT, () => {
-  console.log(`Server is listening on port: ${di.env.SERVER_PORT}`);
+    console.log(`Server is listening on port: ${di.env.SERVER_PORT}`);
 });
-di.app.use(healthCheck);
+
+di.app.use(routes);

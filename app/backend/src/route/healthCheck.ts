@@ -1,17 +1,18 @@
 import express = require('express');
-import fetch from 'node-fetch';
 
 import di from '../di';
+import { CompleteKeyGrant } from '../model/Auth';
 
 const router = express.Router();
 
 router.get('/health_check', async (req, res) => {
-    const response = await fetch('https://www.google.com');
-    //const a = got.get('www.google.com');
-
-    //console.log(data);
-    // console.log("hit routes");
-    // return await di.healthCheckService.healthCheckBasic(res);
+    const dia = di;
+    const key = di.keycloak.grantManager;
+    let grant = (await di.keycloak.grantManager.obtainDirectly(
+        'abnerf.silva@gmail.com',
+        'abnerf.silva@gmail.com',
+    )) as any as CompleteKeyGrant;
+    console.log(grant);
 });
 
 export { router as healthCheck };

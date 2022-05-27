@@ -5,12 +5,12 @@ export class healthCheckService {
     async healthCheckBasic(res: any) {
         console.log('hit service');
         try {
-            const conn = await di.db.initialize();
+            const conn = await di.db;
 
             const user = new User();
             user.firstName = 'Tim';
             user.lastName = 'Rabei';
-            user.age = 25;
+            //user.age = 25;
             await conn.manager.save(user);
 
             const userdb = await conn.manager.findOne(User, {
@@ -21,8 +21,9 @@ export class healthCheckService {
                 status: 'Server is listening!',
                 dummy_user_inserted_on_db: `${userdb.firstName}`,
             });
+            await conn.manager.delete(User, userdb);
         } catch (error) {
-            const err = error as any;
+            const err = error as Error;
             res.status(401).send(err.message);
         }
     }

@@ -1,16 +1,25 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
+import { Entity, Column, PrimaryColumn } from 'typeorm';
 
 @Entity()
 export class User {
-  @PrimaryGeneratedColumn()
-  id: number;
+    @PrimaryColumn('uuid') // thats from keycloak no need to generate a new
+    id: string;
 
-  @Column()
-  firstName: string;
+    @Column({ nullable: false })
+    firstName: string;
 
-  @Column()
-  lastName: string;
+    @Column({ nullable: false })
+    lastName: string;
 
-  @Column()
-  age: number;
+    @Column({ nullable: false })
+    email: string;
+
+    @Column('timestamp with time zone', { nullable: false, default: () => 'CURRENT_TIMESTAMP' })
+    createdAt: Date;
+
+    @Column('timestamp with time zone', { nullable: false, default: () => 'CURRENT_TIMESTAMP' })
+    lastLogin: Date;
+
+    @Column({ default: true })
+    active: boolean;
 }
