@@ -2,6 +2,7 @@ import { Axios } from 'axios';
 import di from '../di';
 import HttpStatusCode from '../enum/HttpStatusCode';
 import { RawToken, UserKeycloak } from '../model/Auth';
+import { UserLogin } from '../model/User';
 import { DotConfig } from '../util/config/Config';
 const querystring = require('querystring');
 
@@ -115,5 +116,22 @@ export class KeycloakService {
         );
         const user = response.data.find((u) => u.email == email);
         return user;
+    }
+
+    async login(userCredentials: UserLogin) {
+        try {
+            const url = `${this._env.KEYCLOAK_AUTH_URL}realms/${this._env.KEYCLOAK_REALM}/protocol/openid-connect/token`;
+            const headers = { 'Content-type': 'application/x-www-form-urlencoded' };
+            const form = querystring.stringify({
+                client_id: 'admin-cli',
+                username: userCredentials.email,
+                password: userCredentials.password,
+                grant_type: 'password',
+            });
+            const token = await this._axios.post(url, form, { headers });
+            console.log(token);
+        } catch (error) {
+            console.log(error);
+        }
     }
 }

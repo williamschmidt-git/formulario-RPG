@@ -2,7 +2,7 @@ import express = require('express');
 
 import di from '../di';
 import HttpStatusCode from '../enum/HttpStatusCode';
-import { UserInput } from '../model/User';
+import { UserInput, UserLogin } from '../model/User';
 
 const router = express.Router();
 
@@ -28,6 +28,11 @@ router.post('/create_user', async (req, res) => {
         const err = error as any;
         throw new Error(err.message);
     }
+});
+router.post('/login', async (req, res) => {
+    const userCredentials: UserLogin = req.body;
+    const keycloak = await di.keycloakService.login(userCredentials);
+    res.send('oi');
 });
 
 export { router as userRoute };
