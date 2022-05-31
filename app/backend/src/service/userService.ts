@@ -1,5 +1,5 @@
 import di from '../di';
-import { UserKeycloak } from '../model/Auth';
+import { UserKeycloak } from '../model/AuthKeycloak';
 import { User } from '../orm/entities/User';
 
 export class UserService {

@@ -1,7 +1,7 @@
 import { Axios } from 'axios';
 import di from '../di';
 import HttpStatusCode from '../enum/HttpStatusCode';
-import { RawToken, UserKeycloak } from '../model/Auth';
+import { RawToken, UserKeycloak } from '../model/AuthKeycloak';
 import { UserLoginInput } from '../model/User';
 import { DotConfig } from '../util/config/Config';
 const querystring = require('querystring');

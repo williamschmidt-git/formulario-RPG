@@ -1,5 +1,5 @@
 import di from './di';
-import { routes } from './route/routes';
+import { routes } from './route';
 
 console.log(di.env.DATABASE_HOST);
 di.app.listen(di.env.SERVER_PORT, () => {

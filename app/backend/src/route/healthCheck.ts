@@ -1,7 +1,7 @@
 import express = require('express');
 
 import di from '../di';
-import { CompleteKeyGrant } from '../model/Auth';
+import { CompleteKeyGrant } from '../model/AuthKeycloak';
 
 const router = express.Router();
 

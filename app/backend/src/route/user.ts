@@ -1,4 +1,4 @@
-import { UserAuthenticated } from './../model/Auth';
+import { UserAuthenticated } from '../model/AuthKeycloak';
 import express = require('express');
 
 import di from '../di';
