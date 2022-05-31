@@ -1,11 +1,15 @@
-import express = require("express");
-import di from "../di";
+import express = require('express');
+import di from '../di';
 
 const router = express.Router();
 
-router.get("/health_check", async (req, res) => {
-  console.log("hit routes");
-  return await di.healthCheckService.healthCheckBasic(res);
+router.get('/health_check', async (req, res, context) => {
+    const user = req.body.context;
+    if (user) {
+        res.send('We did it houston');
+    } else {
+        res.send('Not Logged!');
+    }
 });
 
 export { router as healthCheck };
