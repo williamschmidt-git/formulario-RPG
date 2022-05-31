@@ -1,20 +1,11 @@
-// import { expect } from "chai";
-// import express = require("express");
-// import di from "../../di";
-// import { healthCheck } from "../../route/healthCheck";
+import { expect } from 'chai';
+import express = require('express');
+import di from '../../di';
 
-// let app;
-
-// describe("Health check", function () {
-//   beforeEach(async () => {
-//     app = express();
-//     app.use(healthCheck);
-//     app.listen(8020);
-//   });
-//   it("should get one user from database", async () => {
-//     const response = await app.get("localhost:8020/health_check");
-//     console.log(app);
-//     console.log(response);
-//     expect(response.body.status).to.be.equal(200);
-//   });
-// });
+describe('Health check', function () {
+    it('Should say hi!', async () => {
+        const response = await di.axios.get('http://localhost:8081/health_check');
+        console.log(response);
+        expect(response).equal('Not Logged!');
+    });
+});
