@@ -1,3 +1,4 @@
+import { User } from './../orm/entities/User';
 export interface CompleteKeyGrant {
     access_token: {
         token: string;
@@ -65,12 +66,6 @@ export interface UserKeycloak {
 }
 
 export interface UserAuthenticated {
-    id: string;
-    firstName: string;
-    lastName: string;
-    email: string;
-    createdAt: Date;
-    lastLogin: Date;
-    active: boolean;
-    tokens: RawToken;
+    user: User;
+    tokens?: RawToken;
 }

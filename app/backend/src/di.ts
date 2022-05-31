@@ -40,6 +40,13 @@ class DependencyInjector {
         this._app.use(cors());
         this._app.use(express.json());
 
+        // check each request for a valid bearer token
+        this._app.use(async (req, res, next) => {
+            // assumes bearer token is passed as an authorization header
+            req.body.context = await this._keycloakService.validateToken(req?.headers?.authorization);
+            next();
+        });
+
         this._databaseConn = AppDataSource(this._env);
         this._databaseConn.initialize();
 

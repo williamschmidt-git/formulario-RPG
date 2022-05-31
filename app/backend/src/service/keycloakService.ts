@@ -1,7 +1,7 @@
 import { Axios } from 'axios';
+import { Response, NextFunction } from 'express-serve-static-core';
 import di from '../di';
-import HttpStatusCode from '../enum/HttpStatusCode';
-import { RawToken, UserKeycloak } from '../model/AuthKeycloak';
+import { RawToken, UserAuthenticated, UserKeycloak } from '../model/AuthKeycloak';
 import { UserLoginInput } from '../model/User';
 import { DotConfig } from '../util/config/Config';
 const querystring = require('querystring');
@@ -129,5 +129,30 @@ export class KeycloakService {
             grant_type: 'password',
         });
         return (await this._axios.post<RawToken>(url, form, { headers })).data;
+    }
+
+    async validateToken(token: string) {
+        if (!token) {
+            return null;
+        }
+        const url = `${this._env.KEYCLOAK_AUTH_URL}realms/${this._env.KEYCLOAK_REALM}/protocol/openid-connect/userinfo`;
+        const headers = { Authorization: token };
+        try {
+            const response = await this._axios.get(url, { headers });
+            if (response.status !== 200) {
+                return null;
+            }
+            // the token is valid pass request onto your next function
+            else {
+                const user = await di.userService.findUserByEmail(response.data.email);
+                const userAuth: UserAuthenticated = {
+                    user: user,
+                };
+                return user;
+            }
+        } catch (error) {
+            const err = error as any;
+            if (err.response.statusText === 'Unauthorized') return null;
+        }
     }
 }

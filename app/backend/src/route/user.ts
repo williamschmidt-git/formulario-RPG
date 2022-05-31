@@ -23,7 +23,7 @@ router.post('/create_user', async (req, res) => {
         const user = await di.userService.createUser(keycloakUser);
         if (user) {
             //TODO add proper messaget to reply
-            res.send('worked!').status(HttpStatusCode.OK);
+            res.send(user).status(HttpStatusCode.OK);
         }
     } catch (error) {
         const err = error as any;
@@ -37,13 +37,7 @@ router.post('/login', async (req, res) => {
         const user = await di.userService.findUserByEmail(userCredentials.email);
         user.lastLogin = new Date();
         const userDetails: UserAuthenticated = {
-            id: user.id,
-            email: user.email,
-            firstName: user.firstName,
-            lastName: user.lastName,
-            active: user.active,
-            createdAt: user.createdAt,
-            lastLogin: user.lastLogin,
+            user: user,
             tokens: token,
         };
         di.userService.updateUser(user);
