@@ -1,8 +1,9 @@
-// import { config } from "dotenv";
-
+/* eslint-disable @typescript-eslint/no-var-requires */
 // import { healthCheck } from "./routes/healthCheck";
-import di from "./di";
-import { healthCheck } from "./route/healthCheck";
+import di from './di';
+import { healthCheck } from './route/healthCheck';
+
+require('dotenv').config();
 
 // const app = express();
 

@@ -1,11 +1,11 @@
-import { DotConfig } from "./Config";
-import "reflect-metadata";
-import { DataSource } from "typeorm";
-import { User } from "../../orm/entities/User";
+import { DataSource } from 'typeorm';
+import { DotConfig } from './Config';
+import 'reflect-metadata';
+import { User } from '../../orm/entities/User';
 
-export const AppDataSource = (env: DotConfig) =>
+const AppDataSource = (env: DotConfig) =>
   new DataSource({
-    type: "postgres",
+    type: 'postgres',
     host: env.DATABASE_HOST,
     port: env.DATABASE_PORT,
     username: env.DATABASE_USERNAME,
@@ -17,3 +17,5 @@ export const AppDataSource = (env: DotConfig) =>
     migrations: [],
     subscribers: [],
   });
+
+export default AppDataSource;
