@@ -3,10 +3,13 @@ import di from '../di';
 
 const router = express.Router();
 
-router.get('/health_check', async (req, res) => {
-  console.log('hit routes');
-  const healthCheck = await di.healthCheckService.healthCheckBasic(res);
-  return healthCheck;
+router.get('/health_check', async (req, res, context) => {
+    const user = req.body.context;
+    if (user) {
+        res.send('We did it houston');
+    } else {
+        res.send('Not Logged!');
+    }
 });
 
-export default router;
+export { router as healthCheck };

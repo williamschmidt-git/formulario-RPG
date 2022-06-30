@@ -4,7 +4,7 @@ import express = require('express');
 import { describe } from 'mocha';
 import { healthCheck } from '../../route/healthCheck';
 
-let app;
+let app: any
 
 describe('Health check', () => {
   before(() => {
