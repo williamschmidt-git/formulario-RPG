@@ -12,7 +12,6 @@ require('dotenv').config();
 class DependencyInjector {
     private readonly _app: Application;
     private readonly _env: DotConfig;
-    private _databaseConn: DataSource;
     private _userService: UserService;
 
     constructor(env: DotConfig) {
@@ -29,9 +28,6 @@ class DependencyInjector {
         this._app.use(cors());
         this._app.use(express.json());
 
-        this._databaseConn = AppDataSource(this._env);
-        this._databaseConn.initialize();
-
         this._userService = new UserService();
     }
 
@@ -43,9 +39,6 @@ class DependencyInjector {
         return this._env;
     }
 
-    get db(): DataSource {
-        return this._databaseConn;
-    }
 
     get userService(): UserService {
         return this._userService;

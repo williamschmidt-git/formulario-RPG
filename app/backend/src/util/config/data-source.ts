@@ -1,4 +1,3 @@
-import { DataSource } from 'typeorm';
 import { DotConfig } from './Config';
 import 'reflect-metadata';
 

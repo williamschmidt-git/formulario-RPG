@@ -25,8 +25,6 @@
     "scripts": {
         "dev": "nodemon --exec ts-node src/server.ts",
         "prod": "ts-node dist/server.js",
-        "typeorm": "typeorm-ts-node-commonjs",
-        "test": "",
         "build": "tsc -p .",
         "lint": "eslint '*/**/*.{js,ts,tsx}' --fix"
     }
