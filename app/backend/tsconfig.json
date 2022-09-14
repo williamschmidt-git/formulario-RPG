@@ -14,3 +14,39 @@
     },
     "include": ["./src/**/*.ts"]
 }
+
+
+// {
+//     "compilerOptions": {
+//       "target": "es2017",
+//       "allowJs": true,
+//       "lib": ["ES6"],
+//       "module": "commonjs",
+//       "sourceMap": true,                     
+//       "outDir": "./build",
+//       "rootDir": "./src",
+//       "removeComments": true,
+//       "strict": false,
+//       "moduleResolution": "node",
+//       "baseUrl": ".", 
+//       "forceConsistentCasingInFileNames": true,
+//       "resolveJsonModule": true,
+//       "experimentalDecorators": true,
+//       "emitDecoratorMetadata": true,
+//       "strictPropertyInitialization": false,
+//       "skipLibCheck": true,
+//       "typeRoots": [
+//         "./node_modules/@types",
+//         "./src/@types"
+//       ],
+//       "paths": {
+//         "*": ["node_modules/*"],
+//         "@controllers/*": ["./src/controllers/*"],
+//         "@models/*": ["./src/database/models/*"],
+//         "@services/*": ["./src/services/*"]
+//       }
+//     },
+//     "include": ["src/**/*", "migrations"],
+//     "exclude": ["src/tests"]
+//   }
+  

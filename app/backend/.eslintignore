@@ -2,7 +2,3 @@ nyc.config.js
 node_modules/
 tests/
 build/
-src/orm/entities
-src/database/seeders
-src/database/config
-src/database/models/index.ts
