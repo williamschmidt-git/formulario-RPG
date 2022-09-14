@@ -4,7 +4,6 @@ import { DotConfig } from './util/config/Config';
 import { Application } from 'express';
 import express = require('express');
 import AppDataSource from './util/config/data-source';
-import { healthCheckService } from './service/healthCheck';
 import cors = require('cors');
 import session = require('express-session');
 
@@ -14,7 +13,6 @@ class DependencyInjector {
     private readonly _app: Application;
     private readonly _env: DotConfig;
     private _databaseConn: DataSource;
-    private _healthCheckService: healthCheckService;
     private _userService: UserService;
 
     constructor(env: DotConfig) {
@@ -28,7 +26,6 @@ class DependencyInjector {
                 cookie: { maxAge: 1000 * 60 * 10 }, //10 minutes
             }),
         );
-        this._healthCheckService = new healthCheckService();
         this._app.use(cors());
         this._app.use(express.json());
 
@@ -48,10 +45,6 @@ class DependencyInjector {
 
     get db(): DataSource {
         return this._databaseConn;
-    }
-
-    get healthCheckService(): healthCheckService {
-        return this._healthCheckService;
     }
 
     get userService(): UserService {
