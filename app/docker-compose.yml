@@ -1,12 +1,23 @@
 # Use root/example as user/password credentials
-version: '3.1'
+version: '3.8'
 
 services:
-  mongodb:
-    image: mongo:latest
+  backend:
+    build: ./backend
+    container_name: app_backend
+    links:
+      - db
     ports:
-      - 27017:27017
+      - 3001:3001
+    depends_on:
+      - db
+  db:
+    image: mongo:latest
+    container_name: dbmongo
+    ports:
+      - ${DB_PORT}:27017
     restart: always
-    # environment:
-    #   MONGO_INITDB_ROOT_USERNAME: user
-    #   MONGO_INITDB_ROOT_PASSWORD: password
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${DB_USER}
+      MONGO_INITDB_ROOT_PASSWORD: ${DB_PASS}
+      MONGO_INITDB_DATABASE: ${DB_NAME}
