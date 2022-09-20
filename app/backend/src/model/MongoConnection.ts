@@ -1,4 +1,4 @@
-import { connect } from 'mongoose';
+import mongoose from 'mongoose';
 
 const options = {
   user: 'user', // Usuário do banco de dados.
@@ -7,6 +7,6 @@ const options = {
   // dbName: 'glassesStore', // Define qual banco de dados vou utilizar.
 };
 
-connect('db_mongo://db:27017/', options).then(() => {
+mongoose.connect('db_mongo://db:27017/', options).then(() => {
   console.log('successfully connected')
 });
