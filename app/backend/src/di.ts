@@ -1,9 +1,7 @@
 import { UserService } from './service/userService';
-import { DataSource } from 'typeorm';
 import { DotConfig } from './util/config/Config';
 import { Application } from 'express';
 import express = require('express');
-import AppDataSource from './util/config/data-source';
 import cors = require('cors');
 import session = require('express-session');
 
@@ -38,7 +36,6 @@ class DependencyInjector {
     get env(): DotConfig {
         return this._env;
     }
-
 
     get userService(): UserService {
         return this._userService;
