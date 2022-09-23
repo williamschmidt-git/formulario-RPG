@@ -11,6 +11,6 @@ const options = {
 //   console.log('successfully connected')
 // });
 
-const connectToDatabase = () => mongoose.connect('mongodb://link-db:27017/')
+const connectToDatabase = () => mongoose.connect('mongodb://db:27017/', options)
 
 export default connectToDatabase;
