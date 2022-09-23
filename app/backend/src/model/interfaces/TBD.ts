@@ -15,3 +15,8 @@ const rpgZodSchema = z.object({
     characters: z.instanceof(Types.Array<ICharacter>)
   })
 })
+
+type IRPG = z.infer<typeof rpgZodSchema>
+
+export default IRPG;
+export { rpgZodSchema}
