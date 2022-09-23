@@ -7,6 +7,10 @@ const options = {
   // dbName: 'glassesStore', // Define qual banco de dados vou utilizar.
 };
 
-mongoose.connect('db_mongo://db:27017/', options).then(() => {
-  console.log('successfully connected')
-});
+// mongoose.connect('db_mongo://db:27017/', options).then(() => {
+//   console.log('successfully connected')
+// });
+
+const connectToDatabase = () => mongoose.connect('mongodb://db:27017/', options)
+
+export default connectToDatabase;

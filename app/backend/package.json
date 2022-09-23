@@ -2,7 +2,7 @@
     "dependencies": {
         "axios": "^0.27.2",
         "cors": "^2.8.5",
-        "dotenv": "^16.0.1",
+        "dotenv": "^16.0.2",
         "express": "^4.18.1",
         "express-session": "^1.17.3",
         "mongoose": "^6.6.1",
@@ -10,7 +10,7 @@
         "pg": "^8.4.0",
         "reflect-metadata": "^0.1.13",
         "request": "^2.88.2",
-        "typeorm": "0.3.6"
+        "zod": "^3.19.1"
     },
     "devDependencies": {
         "@types/cors": "^2.8.12",
