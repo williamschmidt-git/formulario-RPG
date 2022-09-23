@@ -12,7 +12,7 @@ const rpgZodSchema = z.object({
   }),
   chronicle: z.object({
     story_teller: z.instanceof(Types.ObjectId),
-    characters: z.instanceof(Types.Array<ICharacter>)
+    characters: z.instanceof(Types.Array<ICharacter>),
   })
 })
 
