@@ -42,7 +42,6 @@ class DependencyInjector {
     }
 }
 
-export default (() => {
-    const DI = new DependencyInjector(process.env as unknown as DotConfig);
-    return DI;
-})();
+
+const DI = new DependencyInjector(process.env as unknown as DotConfig);
+export default DI;

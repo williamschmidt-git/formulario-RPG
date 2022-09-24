@@ -4,8 +4,8 @@ import { routes } from './route';
 
 const { SERVER_PORT } = di.env
 
-di.app.listen(SERVER_PORT, () => {
-    connectToDatabase()
+di.app.listen(SERVER_PORT, async () => {
+    await connectToDatabase()
     console.log(`Server is listening on port: ${SERVER_PORT}`);
 });
 

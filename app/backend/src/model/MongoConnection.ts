@@ -11,6 +11,6 @@ const options = {
 //   console.log('successfully connected')
 // });
 
-const connectToDatabase = () => mongoose.connect('mongodb://db:27017/', options)
+const connectToDatabase = async () => await mongoose.connect('mongodb://localhost:27017/RPG')
 
 export default connectToDatabase;

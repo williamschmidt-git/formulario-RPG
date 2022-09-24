@@ -1,6 +1,5 @@
 import { z } from 'zod';
 import { Types } from 'mongoose';
-import { ICharacter } from '../RPG';
 
 const rpgZodSchema = z.object({
   rpg_system: z.object({
@@ -12,11 +11,16 @@ const rpgZodSchema = z.object({
   }),
   chronicle: z.object({
     story_teller: z.instanceof(Types.ObjectId),
-    characters: z.instanceof(Types.Array<ICharacter>)
+    characters: z.array(z.object({
+      owner: z.instanceof(Types.ObjectId),
+      // attributes: z.lazy(), <-- verificar JSON.TS
+      created_at: z.date(),
+      updated_at: z.date()
+    }))
   })
 })
 
-type IRPG = z.infer<typeof rpgZodSchema>
+type RPG = z.infer<typeof rpgZodSchema>
 
-export default IRPG;
-export { rpgZodSchema}
+export default RPG;
+export { rpgZodSchema }

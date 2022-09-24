@@ -1,12 +1,11 @@
+"use strict";
 // import { Date, model, ObjectId, Schema } from "mongoose";
-
 // export interface ICharacter {
 //   owner: ObjectId,
 //   attributes: {}, //type Mixed https://mongoosejs.com/docs/schematypes.html#mixed
 //   created_at: Date, 
 //   update_at: Date,
 // }
-
 // interface IRPG {
 //   rpg_system: {
 //     name: String,
@@ -20,7 +19,6 @@
 //     characters: Array<ICharacter>,
 //   },
 // }
-
 // const rpgSchema = new Schema<IRPG>({
 //   rpg_system: {
 //     type: Object,
@@ -31,8 +29,7 @@
 //     required: true
 //   }
 // })
-
 // // Para acessarmos os métodos disponibilizados pelo Mongoose(create, find, update...) e
 // // implementarmos nossa API, criamos um model
-
 // const rpgModel = model<IRPG>('RPG', rpgSchema)
+//# sourceMappingURL=RPG.js.map

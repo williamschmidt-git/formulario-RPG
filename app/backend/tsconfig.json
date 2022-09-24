@@ -1,52 +1,24 @@
 {
     "compilerOptions": {
-        //"lib": ["es5", "es6"],
-        "target": "ESNEXT",
-        "module": "commonjs",
-        "moduleResolution": "node",
-        "outDir": "./dist",
-        "emitDecoratorMetadata": true,
-        "experimentalDecorators": true,
-        "sourceMap": true,
-        "forceConsistentCasingInFileNames": true,
-        "strict": true,
-        "strictNullChecks": false
+      "target": "es6",
+      "module": "CommonJS",
+      "sourceMap": true,                     
+      "outDir": "./build",
+      "rootDir": "./src",
+      "strict": true,
+      "baseUrl": ".", 
+      "forceConsistentCasingInFileNames": true,
+      "resolveJsonModule": true,
+      "experimentalDecorators": true,
+      "emitDecoratorMetadata": true,
+      "strictPropertyInitialization": false,
+      "skipLibCheck": true,
+      "moduleResolution": "node",
+      "esModuleInterop": true,
+      "paths": {
+        "*": ["node_modules/*"]
+      }
     },
-    "include": ["./src/**/*.ts"]
-}
-
-
-// {
-//     "compilerOptions": {
-//       "target": "es2017",
-//       "allowJs": true,
-//       "lib": ["ES6"],
-//       "module": "commonjs",
-//       "sourceMap": true,                     
-//       "outDir": "./build",
-//       "rootDir": "./src",
-//       "removeComments": true,
-//       "strict": false,
-//       "moduleResolution": "node",
-//       "baseUrl": ".", 
-//       "forceConsistentCasingInFileNames": true,
-//       "resolveJsonModule": true,
-//       "experimentalDecorators": true,
-//       "emitDecoratorMetadata": true,
-//       "strictPropertyInitialization": false,
-//       "skipLibCheck": true,
-//       "typeRoots": [
-//         "./node_modules/@types",
-//         "./src/@types"
-//       ],
-//       "paths": {
-//         "*": ["node_modules/*"],
-//         "@controllers/*": ["./src/controllers/*"],
-//         "@models/*": ["./src/database/models/*"],
-//         "@services/*": ["./src/services/*"]
-//       }
-//     },
-//     "include": ["src/**/*", "migrations"],
-//     "exclude": ["src/tests"]
-//   }
-  
+    "include": ["./src/**/*.ts"],
+    "exclude": ["src/tests", "node_modules"]
+  }
