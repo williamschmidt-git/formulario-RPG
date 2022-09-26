@@ -6,19 +6,18 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = require("mongoose");
 const MongoModel_1 = __importDefault(require("./MongoModel"));
 const rpgMongooseSchema = new mongoose_1.Schema({
-    rpg_system: {
+    rpgSystem: {
         name: String,
         version: String,
-        is_active: Boolean,
-        created_at: Date,
-        updated_at: Date,
+        isActive: Boolean,
     },
     chronicle: {
-        story_teller: mongoose_1.Types.ObjectId,
-        characters: [{ owner: mongoose_1.Types.ObjectId, created_at: Date, updated_at: Date }]
+        storyTeller: mongoose_1.Types.ObjectId,
+        characters: [{ owner: mongoose_1.Types.ObjectId }]
     }
 }, {
-    autoCreate: true
+    autoCreate: true,
+    timestamps: true,
 });
 class RPGModel extends MongoModel_1.default {
     constructor(model = (0, mongoose_1.model)('RPG', rpgMongooseSchema)) {

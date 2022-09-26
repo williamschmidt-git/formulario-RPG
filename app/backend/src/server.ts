@@ -1,9 +1,9 @@
 import App from './app';
-import RPGController from './controller/RPGController';
-import RPGService from './service/RPGService';
-import RPGModel from './model/RPGModel';
-import RPG from './model/interfaces/RPG';
-import CustomRouter from './route/user';
+import RPGController from './RPG/controller/RPGController';
+import RPGService from './RPG/service/RPGService';
+import RPGModel from './RPG/model/RPGModel';
+import RPG from './RPG/schemas/RPG';
+import CustomRouter from './routes/CustomRouter';
 
 const server = new App();
 const rpgModel = new RPGModel();

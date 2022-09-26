@@ -2,3 +2,4 @@ nyc.config.js
 node_modules/
 tests/
 build/
+dist
