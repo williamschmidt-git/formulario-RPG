@@ -21,4 +21,4 @@ jobs: # list of things to do
         run: cd app/backend/ && npm i
 
       - name: Code Linting
-        run: cd app/backend && npm run lint
+        run: npm run lint
