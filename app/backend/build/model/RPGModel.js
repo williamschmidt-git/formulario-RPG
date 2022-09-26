@@ -17,6 +17,8 @@ const rpgMongooseSchema = new mongoose_1.Schema({
         story_teller: mongoose_1.Types.ObjectId,
         characters: [{ owner: mongoose_1.Types.ObjectId, created_at: Date, updated_at: Date }]
     }
+}, {
+    autoCreate: true
 });
 class RPGModel extends MongoModel_1.default {
     constructor(model = (0, mongoose_1.model)('RPG', rpgMongooseSchema)) {

@@ -1,5 +1,5 @@
 import { model as mongooseCreateModel, Schema, Types, Document } from 'mongoose';
-import RPG from './interfaces/TBD';
+import RPG from './interfaces/RPG';
 import MongoModel from './MongoModel';
 
 interface RPGDocument extends RPG, Document { }
@@ -16,6 +16,8 @@ const rpgMongooseSchema = new Schema<RPGDocument>({
     story_teller: Types.ObjectId,
     characters: [{ owner: Types.ObjectId, created_at: Date, updated_at: Date }]
   }
+}, {
+  autoCreate: true
 })
 
 class RPGModel extends MongoModel<RPG> {
@@ -23,4 +25,5 @@ class RPGModel extends MongoModel<RPG> {
     super(model)
   }
 }
+
 export default RPGModel;

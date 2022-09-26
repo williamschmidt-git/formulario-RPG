@@ -1,5 +1,5 @@
-import { userRoute } from './user';
+import CustomRouter from './user';
 
-const routes = [userRoute];
+const routes = [CustomRouter];
 
 export { routes as routes };

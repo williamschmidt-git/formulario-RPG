@@ -1,12 +1,18 @@
-import di from './di';
-import connectToDatabase from './model/MongoConnection';
-import { routes } from './route';
+import App from './app';
+import RPGController from './controller/RPGController';
+import RPGService from './service/RPGService';
+import RPGModel from './model/RPGModel';
+import RPG from './model/interfaces/RPG';
+import CustomRouter from './route/user';
 
-const { SERVER_PORT } = di.env
+const server = new App();
+const rpgModel = new RPGModel();
+const rpgService = new RPGService(rpgModel)
+const rpgController = new RPGController(rpgService)
 
-di.app.listen(SERVER_PORT, async () => {
-    await connectToDatabase()
-    console.log(`Server is listening on port: ${SERVER_PORT}`);
-});
+const rpgRouter = new CustomRouter<RPG>();
+rpgRouter.addRoute(rpgController)
 
-di.app.use(routes);
+server.addRouter(rpgRouter.router)
+
+export default server;

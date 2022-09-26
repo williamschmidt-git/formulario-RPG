@@ -1,13 +1,21 @@
-import express = require('express');
-
-import di from '../di';
+import {Router} from 'express'
+import Controller from '../controller/index';
+import app from '../app';
 import HttpStatusCode from '../enum/HttpStatusCode';
 
-const router = express.Router();
+class CustomRouter<T> {
+    public router: Router;
 
-router.post('/create_user', async (req, res) => {
-    // const userInput: UserInput = req.body;
-    //add JOI to check inputs
-});
+    constructor(){
+        this.router = Router()
+    }
 
-export { router as userRoute };
+    public addRoute(
+        controller: Controller<T>,
+    ) {
+        this.router.post('/rpg', controller.create)
+        this.router.get('/', controller.read)
+    }
+}
+
+export default CustomRouter;
