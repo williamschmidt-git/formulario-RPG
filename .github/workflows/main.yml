@@ -17,4 +17,4 @@ jobs:
           run: cd app/backend/ && npm install
 
         - name: executando o lint para verificar se a erros
-          run: cd app/backend/ && npx eslint . --ext .ts
+          run: cd app/backend/ && npm i @typescript-eslint/eslint-plugin && npx eslint . --ext .ts
