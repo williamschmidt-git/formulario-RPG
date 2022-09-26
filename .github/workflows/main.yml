@@ -1,24 +1,20 @@
+on: [push, pull_request]
 
-# .github/workflows/lint.yml
-name: Lint # name of the action (displayed in the github interface)
-on: push
+jobs:
+  eslint:
+    runs-on: ubuntu-latest
+    steps:
+        - name: Verifica o repositório do Git
+          uses: actions/checkout@v2
 
-env: # environment variables (available in any part of the action)
-  NODE_VERSION: 16
+        - name: Instala o node com a versão
+          uses: actions/setup-node@v1
+          with:
+            node-version: 14
 
-jobs: # list of things to do
-  linting:
-    name: Linting # job name (unique id)
-    runs-on: ubuntu-latest # on which machine to run
-    steps: # list of steps
-      - name: Install NodeJS
-        uses: actions/setup-node@v2
 
-      - name: Code Checkout
-        uses: actions/checkout@v2
+        - name: instalando as dependências
+          run: npm install
 
-      - name: Install Dependencies
-        run: cd app/backend/ && npm i
-
-      - name: Code Linting
-        run: cd app/backend/ && npx run eslint . --ext .ts, .tsx
+        - name: executando o lint para verificar se a erros
+          run: npx eslint . --ext .ts
