@@ -19,6 +19,6 @@ jobs:
 
       - name: run CI
         run: |
-          npm install
+          cd app/backend && npm install
           npm run lint 
           npm run test 

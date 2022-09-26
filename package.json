@@ -1,0 +1,20 @@
+{
+  "name": "formulario-rpg",
+  "version": "1.0.0",
+  "description": "<div>   Este projeto é um gerenciador de fichas de RPG de mesa, com o intuito de facilitar a criação de personagens    e gerenciamento de campanhas de Vampiro: A Máscara, entre outros.",
+  "main": "index.js",
+  "scripts": {
+    "lint": "cd app/backend && npm run lint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/williamschmidt-git/formulario-RPG.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/williamschmidt-git/formulario-RPG/issues"
+  },
+  "homepage": "https://github.com/williamschmidt-git/formulario-RPG#readme"
+}
