@@ -17,3 +17,7 @@ jobs:
         - name: instalando as dependências
           working-directory: ./app/backend
           run: npm install
+
+        - name: executando o lint para verificar se a erros
+          working-directory: ./app/backend
+          run: npx eslint .
