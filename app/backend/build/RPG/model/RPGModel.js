@@ -12,8 +12,8 @@ const rpgMongooseSchema = new mongoose_1.Schema({
         isActive: Boolean,
     },
     chronicle: {
-        storyTeller: mongoose_1.Types.ObjectId,
-        characters: [{ owner: mongoose_1.Types.ObjectId }]
+        storyTeller: String,
+        characters: [{ owner: String, attributes: {}, type: Object }]
     }
 }, {
     autoCreate: true,

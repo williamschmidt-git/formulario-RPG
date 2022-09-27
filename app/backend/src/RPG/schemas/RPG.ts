@@ -1,5 +1,4 @@
 import { z } from 'zod';
-import { Types } from 'mongoose';
 
 const rpgZodSchema = z.object({
   rpgSystem: z.object({
@@ -8,10 +7,10 @@ const rpgZodSchema = z.object({
     isActive: z.boolean()
   }),
   chronicle: z.object({
-    storyTeller: z.instanceof(Types.ObjectId),
+    storyTeller: z.string(),
     characters: z.array(z.object({
-      owner: z.instanceof(Types.ObjectId),
-      // attributes: z.lazy(), <-- verificar JSON.TS
+      owner: z.string(),
+      attributes: z.unknown()
     }))
   })
 })

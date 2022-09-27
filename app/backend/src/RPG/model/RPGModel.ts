@@ -1,6 +1,5 @@
 import { model as mongooseCreateModel,
   Schema,
-  Types,
   Document
 } from 'mongoose';
 import RPG from '../schemas/RPG';
@@ -15,8 +14,8 @@ const rpgMongooseSchema = new Schema<RPGDocument>({
     isActive: Boolean,
   },
   chronicle: {
-    storyTeller: Types.ObjectId,
-    characters: [{ owner: Types.ObjectId }]
+    storyTeller: String,
+    characters: [{ owner: String, attributes: {}, type: Object }]
   }
 }, {
   autoCreate: true,
