@@ -15,9 +15,9 @@ jobs:
             node-version: 14
 
         - name: instalando as dependências
-          working-directory: ./formulario-RPG/app/backend
+          working-directory: /app/backend
           run: npm install
 
         - name: executando o lint para verificar se a erros
-          working-directory: ./formulario-RPG/app/backend
+          working-directory: /app/backend
           run: npx eslint .
