@@ -20,4 +20,4 @@ jobs:
 
         - name: executando o lint para verificar se a erros
           working-directory: ./app/backend
-          run: npx eslint .
+          run: ls
