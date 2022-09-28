@@ -24,9 +24,15 @@ abstract class Service<T> {
   // //   return this.model.update(id, obj);
   // // }
 
-  // public async delete(id: string): Promise<T | null | ServiceError> {
-  //   return this.model.delete(id);
-  // }
+  public async delete(id: string): Promise<T | null | ServiceError> {
+    return this.model.delete(id);
+  }
+
+  public async findOneAndDelete(filter: object):
+  Promise<T | null | ServiceError> {
+    return this.model.findOneAndDelete(filter)
+  }
+  
 }
 
 export default Service;

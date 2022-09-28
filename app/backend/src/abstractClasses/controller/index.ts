@@ -26,17 +26,10 @@ abstract class Controller<T> {
     res: Response<T | ResponseError>
   ): Promise<typeof res>;
 
-  read = async (
+  abstract read(
     _req: Request,
     res: Response<T[] | ResponseError>,
-  ): Promise<typeof res> => {
-    try {
-      const objs = await this.service.read();
-      return res.json(objs);
-    } catch (err) {
-      return res.status(500).json({ error: this.errors.internal });
-    }
-  };
+  ): Promise<typeof res>;
 
   // abstract readOne(
   //   req: Request<{ id: string }>,
@@ -48,10 +41,15 @@ abstract class Controller<T> {
   //   res: Response<T | ResponseError >
   // ): Promise<typeof res>;
 
-  // abstract delete(
-  //   req: Request<{ id: string }>,
-  //   res: Response<T | ResponseError>
-  // ): Promise<typeof res>;
+  abstract findOneAndDelete(
+    req: Request,
+    res: Response< T | ResponseError>
+  ): Promise<typeof res>;
+
+  abstract delete(
+    req: Request<{ id: string }>,
+    res: Response<T | ResponseError>
+  ): Promise<typeof res>;
 }
 
 export default Controller;

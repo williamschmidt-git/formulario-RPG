@@ -8,6 +8,7 @@ class CustomRouter {
     addRoute(controller) {
         this.router.post('/rpg', controller.create);
         this.router.get('/', controller.read);
+        this.router.delete('/rpg/', controller.findOneAndDelete);
     }
 }
 exports.default = CustomRouter;

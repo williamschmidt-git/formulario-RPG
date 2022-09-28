@@ -23,6 +23,22 @@ class Service {
             return this.model.read();
         });
     }
+    // public async readOne(id: string): Promise<T | null | ServiceError> {
+    //   return this.model.readOne(id);
+    // }
+    // // public async update(id: string, obj: T): Promise<T | null | ServiceError> {
+    // //   return this.model.update(id, obj);
+    // // }
+    delete(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return this.model.delete(id);
+        });
+    }
+    findOneAndDelete(filter) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return this.model.findOneAndDelete(filter);
+        });
+    }
 }
 exports.default = Service;
 //# sourceMappingURL=index.js.map

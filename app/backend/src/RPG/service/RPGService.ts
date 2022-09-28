@@ -22,6 +22,17 @@ class RPGService extends Service<RPG> {
 
     return rpgs
   }
+
+  delete = async (id: string): Promise<RPG | null | ServiceError> => {
+    return this.model.delete(id)
+  }
+
+  findOneAndDelete = async(filter: any):
+  Promise<RPG | null | ServiceError> => {
+    const { chronicle: { storyTeller} } = filter;
+    console.log(storyTeller)
+    return this.model.findOneAndDelete({'chronicle.storyTeller': storyTeller})
+  }
 }
 
-export default RPGService
+export default RPGService;

@@ -14,6 +14,9 @@ import { Model } from '../../interfaces/ModelInterface';
     // update = async (id: string, obj: T):
     // Promise<T | null> => await this.model.updateOne(id, obj)
 
+    findOneAndDelete = async (filter: object): Promise<T | null> => 
+    this.model.findOneAndDelete(filter);
+
     delete = async (id: string): Promise<T | null> =>
       this.model.findByIdAndDelete(id)
   }

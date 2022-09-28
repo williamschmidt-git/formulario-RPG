@@ -29,6 +29,15 @@ class RPGService extends service_1.default {
             const rpgs = this.model.read();
             return rpgs;
         });
+        this.delete = (id) => __awaiter(this, void 0, void 0, function* () {
+            return this.model.delete(id);
+        });
+        this.findOneAndDelete = (filter) => __awaiter(this, void 0, void 0, function* () {
+            const { chronicle } = filter;
+            return this.model.findOneAndDelete({ chronicle: {
+                    storyTeller: chronicle.storyTeller
+                } });
+        });
     }
 }
 exports.default = RPGService;
