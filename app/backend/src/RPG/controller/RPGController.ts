@@ -41,12 +41,12 @@ class RPGController extends Controller<RPG> {
       const rpgs = await this.service.read();
 
       if(!rpgs) {
-        return res.status(404).json({error: 'error'})
+        return res.status(404).json({error: this.errors.notFound })
       }
 
       return res.status(200).json(rpgs)
     } catch (err) {
-      return res.status(500).json({error: 'error'})
+      return res.status(500).json({error: this.errors.internal })
     }
   }
 
@@ -57,11 +57,11 @@ class RPGController extends Controller<RPG> {
       const { id } = req.params;
       const rpg = await this.service.delete(id)
 
-      if(!rpg) res.status(404).json({ error: 'error '})
+      if(!rpg) res.status(404).json({ error: this.errors.notFound })
 
       return res.status(204).end()
     } catch (err) {
-      return res.status(500).json({ error: 'error '})
+      return res.status(500).json({ error: this.errors.internal })
     }
   }
 
@@ -70,11 +70,13 @@ class RPGController extends Controller<RPG> {
     res: Response<RPG | ResponseError>
   ): Promise<typeof res> => {
     try {
-      await this.service.findOneAndDelete(req.body)
+      const rpg = await this.service.findOneAndDelete(req.body)
+
+      if(!rpg) res.status(404).json({error: this.errors.notFound })
 
       return res.status(200).end()
     } catch (error) {
-      return res.status(500).json({ error: 'error '})
+      return res.status(500).json({ error: this.errors.internal })
     }
   }
 }
