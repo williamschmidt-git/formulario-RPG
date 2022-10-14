@@ -36,12 +36,12 @@ class RPGController extends controller_1.default {
             try {
                 const rpgs = yield this.service.read();
                 if (!rpgs) {
-                    return res.status(404).json({ error: 'error' });
+                    return res.status(404).json({ error: this.errors.notFound });
                 }
                 return res.status(200).json(rpgs);
             }
             catch (err) {
-                return res.status(500).json({ error: 'error' });
+                return res.status(500).json({ error: this.errors.internal });
             }
         });
         this.delete = (req, res) => __awaiter(this, void 0, void 0, function* () {
@@ -49,20 +49,22 @@ class RPGController extends controller_1.default {
                 const { id } = req.params;
                 const rpg = yield this.service.delete(id);
                 if (!rpg)
-                    res.status(404).json({ error: 'error ' });
+                    res.status(404).json({ error: this.errors.notFound });
                 return res.status(204).end();
             }
             catch (err) {
-                return res.status(500).json({ error: 'error ' });
+                return res.status(500).json({ error: this.errors.internal });
             }
         });
         this.findOneAndDelete = (req, res) => __awaiter(this, void 0, void 0, function* () {
             try {
-                yield this.service.findOneAndDelete(req.body);
-                return res.status(204).end();
+                const rpg = yield this.service.findOneAndDelete(req.body);
+                if (!rpg)
+                    res.status(404).json({ error: this.errors.notFound });
+                return res.status(200).end();
             }
             catch (error) {
-                return res.status(500).json({ error: 'error ' });
+                return res.status(500).json({ error: this.errors.internal });
             }
         });
     }

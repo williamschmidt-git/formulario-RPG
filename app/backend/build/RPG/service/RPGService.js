@@ -33,10 +33,9 @@ class RPGService extends service_1.default {
             return this.model.delete(id);
         });
         this.findOneAndDelete = (filter) => __awaiter(this, void 0, void 0, function* () {
-            const { chronicle } = filter;
-            return this.model.findOneAndDelete({ chronicle: {
-                    storyTeller: chronicle.storyTeller
-                } });
+            const { chronicle: { storyTeller } } = filter;
+            console.log(storyTeller);
+            return this.model.findOneAndDelete({ 'chronicle.storyTeller': storyTeller });
         });
     }
 }
