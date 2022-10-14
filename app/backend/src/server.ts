@@ -1,18 +1,18 @@
-// import { config } from "dotenv";
+import App from './app';
+import RPGController from './RPG/controller/RPGController';
+import RPGService from './RPG/service/RPGService';
+import RPGModel from './RPG/model/RPGModel';
+import RPG from './RPG/schemas/RPG';
+import CustomRouter from './routes/CustomRouter';
 
-// import { healthCheck } from "./routes/healthCheck";
-import di from "./di";
-import { healthCheck } from "./route/healthCheck";
+const server = new App();
+const rpgModel = new RPGModel();
+const rpgService = new RPGService(rpgModel)
+const rpgController = new RPGController(rpgService)
 
-// const app = express();
+const rpgRouter = new CustomRouter<RPG>();
+rpgRouter.addRoute(rpgController)
 
-// app.use(express.json());
-// app.use(healthCheck);
-// app.listen(8080, () => {
-//   console.log("Server is listening on port: 8080 ");
-// });
-console.log(di.env.DATABASE_HOST);
-di.app.listen(di.env.SERVER_PORT, () => {
-  console.log(`Server is listening on port: ${di.env.SERVER_PORT}`);
-});
-di.app.use(healthCheck);
+server.addRouter(rpgRouter.router)
+
+export default server;
