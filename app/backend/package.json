@@ -33,6 +33,9 @@
         "ts-node": "10.7.0",
         "typescript": "4.5.2"
     },
+    "optionalDependencies": {
+        "fsevents": "*"
+     },
     "scripts": {
         "dev": "npm run build && nodemon --exec ts-node src/index.ts",
         "prod": "ts-node dist/index.js",
