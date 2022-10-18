@@ -21,8 +21,9 @@ class App {
 		// mongoose.connect('dbmongo://localhost:27017/', options).then(() => {
 		// 	console.log('successfully connected');
 		// });
+
 		mongoose
-			.connect('mongodb://dbmongo:27017')
+			.connect('mongodb+srv://rojao:13tiro@rojao.covwnst.mongodb.net/test')
 			.then(() => {
 				console.log('loguei no db');
 			})
