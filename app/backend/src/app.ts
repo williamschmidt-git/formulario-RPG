@@ -24,5 +24,3 @@ class App {
 }
 
 export default App;
-
-//classe app
