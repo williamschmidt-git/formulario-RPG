@@ -1,4 +1,5 @@
 build
-node_modules
-.env
-.env.example
+./node_modules
+Dockerfile
+.dockerignore
+docker-compose.yml
