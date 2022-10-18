@@ -22,6 +22,15 @@ const mongoose_1 = __importDefault(require("mongoose"));
 // mongoose.connect('db_mongo://db:27017/', options).then(() => {
 //   console.log('successfully connected')
 // });
-const connectToDatabase = () => __awaiter(void 0, void 0, void 0, function* () { return yield mongoose_1.default.connect('mongodb://localhost:27017/RPG'); });
+const connectToDatabase = () => __awaiter(void 0, void 0, void 0, function* () {
+    // eslint-disable-next-line max-len
+    return yield mongoose_1.default.connect('mongodb+srv://rojao:13tiro@rojao.covwnst.mongodb.net/test').then(() => {
+        console.log('Foi!!!!!!!!!!!!!!!!!!!!!!!!!');
+    })
+        .catch((e) => {
+        console.log(e);
+    });
+});
 exports.default = connectToDatabase;
+// mongodb://username:password@host:port/db
 //# sourceMappingURL=connection.js.map

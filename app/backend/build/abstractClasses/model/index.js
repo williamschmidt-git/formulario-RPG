@@ -14,7 +14,8 @@ class MongoModel {
         this.model = model;
         this.create = (obj) => __awaiter(this, void 0, void 0, function* () { return this.model.create(Object.assign({}, obj)); });
         this.read = () => __awaiter(this, void 0, void 0, function* () { return this.model.find(); });
-        this.readOne = (id) => __awaiter(this, void 0, void 0, function* () { return this.model.findOne({ _id: id }); });
+        // readOne = async (id: string): Promise<T | null> =>
+        //   this.model.findOne({_id: id});
         // update = async (id: string, obj: T):
         // Promise<T | null> => await this.model.updateOne(id, obj)
         this.findOneAndDelete = (filter) => __awaiter(this, void 0, void 0, function* () { return this.model.findOneAndDelete(filter); });

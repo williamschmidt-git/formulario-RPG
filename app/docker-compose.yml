@@ -1,30 +1,30 @@
 # Use root/example as user/password credentials
-version: '3.8'
+version: '3.9'
 
 services:
-  backend:
-    build: ./backend
-    container_name: app_backend
-    links:
-      - db
-    depends_on:
-      - db
-    healthcheck:
-      test: ["CMD", "lsof", "-t", "-i:3001"] # Caso utilize outra porta interna para o back, altere ela aqui também
-      timeout: 10s
-      retries: 5
-    ports:
-      - 3001:3001
-  db:
+  # backend:
+  #   build: ./backend
+  #   container_name: app_backend
+  #   depends_on:
+  #     - dbmongo
+  #   healthcheck:
+  #     test: ["CMD", "lsof", "-t", "-i:3001"] # Caso utilize outra porta interna para o back, altere ela aqui também
+  #     timeout: 10s
+  #     retries: 5
+  #   ports:
+  #     - 3001:3001
+  dbmongo:
     image: mongo:latest
-    container_name: dbmongo
+    container_name: db_container
     ports:
-      - ${DB_PORT}:27017
+      - 27017:27017
     restart: always
+    # volumes:
+    #   - dbmongo:/data/db
     environment:
-      MONGO_INITDB_ROOT_USERNAME: ${DB_USER}
-      MONGO_INITDB_ROOT_PASSWORD: ${DB_PASS}
-      MONGO_INITDB_DATABASE: ${DB_NAME}
+      MONGO_INITDB_ROOT_USERNAME: user
+      MONGO_INITDB_ROOT_PASSWORD: password
+      # MONGO_INITDB_DATABASE: ${DB_NAME}
     # healthcheck:
     #   test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"] # Deve aguardar o banco ficar operacional
     #   timeout: 10s

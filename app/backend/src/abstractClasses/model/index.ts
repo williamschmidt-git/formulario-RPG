@@ -8,8 +8,8 @@ import { Model } from '../../interfaces/ModelInterface';
 
     read = async (): Promise<T[]> => this.model.find();
 
-    readOne = async (id: string): Promise<T | null> =>
-      this.model.findOne({ _id: id });
+    // readOne = async (id: string): Promise<T | null> =>
+    //   this.model.findOne({_id: id});
 
     // update = async (id: string, obj: T):
     // Promise<T | null> => await this.model.updateOne(id, obj)

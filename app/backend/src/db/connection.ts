@@ -11,7 +11,18 @@ import mongoose from 'mongoose';
 //   console.log('successfully connected')
 // });
 
-const connectToDatabase = async () => 
-  await mongoose.connect('mongodb://localhost:27017/RPG')
+const connectToDatabase = () =>
+  // eslint-disable-next-line max-len
+  mongoose.connect('mongodb+srv://rojao:13tiro@rojao.covwnst.mongodb.net/test', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  }).then(() => {
+    console.log('Foi!!!!!!!!!!!!!!!!!!!!!!!!!');
+  })
+    .catch((e) => {
+      console.log(e);
+    });
 
 export default connectToDatabase;
+
+// mongodb://username:password@host:port/db
