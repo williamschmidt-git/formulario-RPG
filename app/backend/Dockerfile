@@ -2,12 +2,12 @@ FROM node:16-alpine
 
 WORKDIR /app
 
-COPY package*.json ./
+COPY package*.json .
 
-RUN npm install
+RUN npm ci
 
 COPY . .
 
-EXPOSE 3000
+EXPOSE 3001
 
-ENTRYPOINT ["npm", "start"]
+ENTRYPOINT ["npm", "run dev"]
