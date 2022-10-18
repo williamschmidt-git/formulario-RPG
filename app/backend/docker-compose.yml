@@ -2,19 +2,19 @@
 version: '3.8'
 
 services:
-  backend:
-    build: ./backend
-    container_name: app_backend
-    links:
-      - db
-    depends_on:
-      - db
-    healthcheck:
-      test: ["CMD", "lsof", "-t", "-i:3001"] # Caso utilize outra porta interna para o back, altere ela aqui também
-      timeout: 10s
-      retries: 5
-    ports:
-      - 3001:3001
+  # backend:
+  #   build: ./backend
+  #   container_name: app_backend
+  #   links:
+  #     - db
+  #   depends_on:
+  #     - db
+  #   healthcheck:
+  #     test: ["CMD", "lsof", "-t", "-i:3001"] # Caso utilize outra porta interna para o back, altere ela aqui também
+  #     timeout: 10s
+  #     retries: 5
+  #   ports:
+  #     - 3001:3001
   db:
     image: mongo:latest
     container_name: dbmongo

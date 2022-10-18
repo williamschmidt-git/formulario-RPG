@@ -48,8 +48,9 @@ class RPGController extends controller_1.default {
             try {
                 const { id } = req.params;
                 const rpg = yield this.service.delete(id);
-                if (!rpg)
+                if (!rpg) {
                     res.status(404).json({ error: this.errors.notFound });
+                }
                 return res.status(204).end();
             }
             catch (err) {
@@ -59,8 +60,9 @@ class RPGController extends controller_1.default {
         this.findOneAndDelete = (req, res) => __awaiter(this, void 0, void 0, function* () {
             try {
                 const rpg = yield this.service.findOneAndDelete(req.body);
-                if (!rpg)
+                if (!rpg) {
                     res.status(404).json({ error: this.errors.notFound });
+                }
                 return res.status(200).end();
             }
             catch (error) {
