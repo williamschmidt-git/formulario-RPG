@@ -17,9 +17,9 @@ enum ControllerErrors {
 }
 
 abstract class Controller<T> {
-	protected errors = ControllerErrors;
+  protected errors = ControllerErrors;
 
-	constructor(protected service: Service<T>) {}
+  constructor(protected service: Service<T>) {}
 
 	abstract create(
 		req: RequestWithBody<T>,

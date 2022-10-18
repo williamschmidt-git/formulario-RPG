@@ -7,12 +7,12 @@ import CustomRouter from './routes/CustomRouter';
 
 const server = new App();
 const rpgModel = new RPGModel();
-const rpgService = new RPGService(rpgModel)
-const rpgController = new RPGController(rpgService)
+const rpgService = new RPGService(rpgModel);
+const rpgController = new RPGController(rpgService);
 
 const rpgRouter = new CustomRouter<RPG>();
-rpgRouter.addRoute(rpgController)
+rpgRouter.addRoute(rpgController);
 
-server.addRouter(rpgRouter.router)
+server.addRouter(rpgRouter.router);
 
 export default server;

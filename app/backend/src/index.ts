@@ -1,5 +1,5 @@
 import server from './server';
 
-server.startServer()
+server.startServer();
 
 // inicia o servidor
