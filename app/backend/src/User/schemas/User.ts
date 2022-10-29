@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
 const userZodSchema = z.object({
-  role: z.string(),
+  // role: z.string(),
   name: z.string({
     required_error: 'name is required',
     invalid_type_error: 'name must be a string',

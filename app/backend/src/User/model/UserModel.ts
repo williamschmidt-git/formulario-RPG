@@ -9,8 +9,8 @@ import MongoModel from '../../abstractClasses/model';
 interface UserDocument extends User, Document {}
 
 const userMongooseSchema = new Schema<UserDocument>({
-  _id: String,
-  role: String,
+  // _id: String,
+  // role: String,
   name: String,
   email: String,
   password: String,
