@@ -1,5 +1,6 @@
-import CustomRouter from './CustomRouter';
+import RpgRouter from '../RPG/routes/router';
+import UserRouter from '../User/routes/router';
 
-const routes = [CustomRouter];
+const routes = { RpgRouter, UserRouter };
 
-export { routes as routes };
+export default routes;

@@ -65,4 +65,21 @@ class UserController extends Controller<User> {
       return res.status(500).json({ error: this.errors.internal });
     }
   };
+
+  findOneAndDelete = async (
+    req: RequestWithBody<User>,
+    res: Response<User | ResponseError>
+  ): Promise<typeof res> => {
+    try {
+      const user = await this.service.findOneAndDelete(req.body);
+
+      if(!user) {res.status(404).json({ error: this.errors.notFound });}
+
+      return res.status(200).end();
+    } catch (error) {
+      return res.status(500).json({ error: this.errors.internal });
+    }
+  };
 }
+
+export default UserController;
