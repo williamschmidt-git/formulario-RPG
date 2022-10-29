@@ -20,11 +20,11 @@ const rpgMongooseSchema = new Schema<RPGDocument>({
 }, {
   autoCreate: true,
   timestamps: true,
-})
+});
 
 class RPGModel extends MongoModel<RPG> {
   constructor(model = mongooseCreateModel('RPG', rpgMongooseSchema)) {
-    super(model)
+    super(model);
   }
 }
 
