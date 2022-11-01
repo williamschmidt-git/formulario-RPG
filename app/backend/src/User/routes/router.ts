@@ -1,7 +1,5 @@
 import { Router } from "express";
-import Controller from "../../abstractClasses/controller";
 import UserController from "../controller/UserController";
-import User from "../schemas/User";
 
 class UserRouter {
   public router: Router;

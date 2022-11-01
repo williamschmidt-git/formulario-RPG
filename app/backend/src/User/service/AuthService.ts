@@ -27,12 +27,12 @@ class AuthService {
     return token;
   };
 
-  authentication = (token: string  | undefined): jwt.JwtPayload | string | ResponseError => {
+  authentication = (token: string  | undefined): jwt.JwtPayload | string | ResponseError | object => {
+    if(!token) {
+      return { error: 'Token not found' };
+    }
     try {
-      if(!token) {
-        return { error: 'Token not found' };
-      }
-      return jwt.verify(token, this.key);
+      return { payload: jwt.verify(token, this.key) };
     } catch (err) {
       return { error: 'Invalid token' };
     }
