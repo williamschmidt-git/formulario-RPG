@@ -13,7 +13,14 @@ const userZodSchema = z.object({
   password: z.string({
     required_error: 'password is required',
     invalid_type_error: 'password must be a string',
-  }).min(8)
+  }).regex(new RegExp(".*[A-Z].*"), "One uppercase character")
+    .regex(new RegExp(".*[a-z].*"), "One lowercase character")
+    .regex(new RegExp(".*\\d.*"), "One number")
+    .regex(
+      new RegExp(".*[`~<>?,./!@#$%^&*()\\-_+=\"'|{}\\[\\];:\\\\].*"),
+      "One special character"
+    )
+    .min(8).
 });
 
 
