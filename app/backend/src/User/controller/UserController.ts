@@ -17,12 +17,13 @@ class UserController extends Controller<User> {
 
   create = async (
     req: RequestWithBody<User>,
-    res: Response<User | ResponseError | string>,
+    res: Response<User | ResponseError | object>,
   ): Promise<typeof res> => {
     const { body } = req;
 
     try {
       const user = await this.service.create(body);
+      const { name, email } = body;
 
       if(!user) {
         return res.status(500).json({ error: this.errors.internal});
@@ -31,9 +32,10 @@ class UserController extends Controller<User> {
       if('error' in user) {
         return res.status(400).json({ error: user.error });
       }
+
       const token = this.authService.genToken(user);
 
-      return res.status(201).json(token);
+      return res.status(201).json({ name, email, token});
     } catch (err) {
       return res.status(500).json({ error: this.errors.internal });
     }
@@ -84,6 +86,14 @@ class UserController extends Controller<User> {
     } catch (error) {
       return res.status(500).json({ error: this.errors.internal });
     }
+  };
+
+  login = async(
+    req: RequestWithBody<User>,
+    res: Response<User | ResponseError| string | object>
+  ): Promise<typeof res> => {
+    const response = await this.authService.authentication(req.body);
+    return res.status(200).json(response);
   };
 }
 

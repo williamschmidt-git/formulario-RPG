@@ -31,8 +31,7 @@ abstract class Service<T> {
   public async findOneAndDelete(filter: object):
   Promise<T | null | ServiceError> {
     return this.model.findOneAndDelete(filter);
-  }
-  
+  }  
 }
 
 export default Service;

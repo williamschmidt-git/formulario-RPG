@@ -32,6 +32,10 @@ class UserService extends Service<User> {
   
     return this.model.findOneAndDelete({'name': user.name});
   };
+
+  findByEmail = async(user: User): Promise<User | null | ServiceError> => {
+    return this.model.findByEmail({'email': user.email});
+  };
 }
 
 export default UserService;

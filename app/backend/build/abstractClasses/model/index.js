@@ -20,6 +20,8 @@ class MongoModel {
         // Promise<T | null> => await this.model.updateOne(id, obj)
         this.findOneAndDelete = (filter) => __awaiter(this, void 0, void 0, function* () { return this.model.findOneAndDelete(filter); });
         this.delete = (id) => __awaiter(this, void 0, void 0, function* () { return this.model.findByIdAndDelete(id); });
+        //findOneAndThrow
+        this.findByEmail = (user) => __awaiter(this, void 0, void 0, function* () { return this.model.findOne(user); });
     }
 }
 exports.default = MongoModel;
