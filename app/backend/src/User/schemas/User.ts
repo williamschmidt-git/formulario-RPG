@@ -20,7 +20,7 @@ const userZodSchema = z.object({
       new RegExp(".*[`~<>?,./!@#$%^&*()\\-_+=\"'|{}\\[\\];:\\\\].*"),
       "One special character"
     )
-    .min(8).
+    .min(8)
 });
 
 
