@@ -4,6 +4,7 @@ node_modules
 tmp
 build
 copilot
+jwt.evaluation.key
 
 # misc
 

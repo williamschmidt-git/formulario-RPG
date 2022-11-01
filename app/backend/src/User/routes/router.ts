@@ -1,5 +1,6 @@
 import { Router } from "express";
 import Controller from "../../abstractClasses/controller";
+import UserController from "../controller/UserController";
 import User from "../schemas/User";
 
 class UserRouter {
@@ -9,9 +10,9 @@ class UserRouter {
     this.router = Router();
   }
 
-  public addRoute(controller: Controller<User>) {
+  public addRoute(controller: UserController) {
     this.router.post('/user', controller.create);
-    this.router.get('/user', controller.read);
+    this.router.get('/user', controller.auth, controller.read);
     // this.router.get('/user/:id', controller.)
   }
 }

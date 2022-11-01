@@ -1,7 +1,7 @@
 import User from "../schemas/User";
 import UserService from "../service/UserService";
 import Controller, { RequestWithBody, ResponseError } from '../../abstractClasses/controller';
-import { Response } from 'express';
+import { NextFunction, Response } from 'express';
 import AuthService from "../service/AuthService";
 import { userModel } from "../../factory";
 
@@ -92,8 +92,25 @@ class UserController extends Controller<User> {
     req: RequestWithBody<User>,
     res: Response<User | ResponseError| string | object>
   ): Promise<typeof res> => {
-    const response = await this.authService.authentication(req.body);
+    //authenticate user
+
+    const response = await this.authService.authorization(req.body);
     return res.status(200).json(response);
+  };
+
+  auth = (
+    req: RequestWithBody<User>,
+    res: Response<object | ResponseError>,
+  ): typeof res =>{
+    try {
+      const { authorization } = req.headers;
+
+      const response = this.authService.authentication(authorization);
+
+      return res.status(200).json({ response });
+    } catch (error) {
+      return res.status(500).json({ error: this.errors.internal });
+    }
   };
 }
 
