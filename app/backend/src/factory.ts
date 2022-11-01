@@ -25,3 +25,6 @@ server.addRouter(rpgRouter.router);
 server.addRouter(userRouter.router);
 
 export default server;
+export { 
+  userModel
+};

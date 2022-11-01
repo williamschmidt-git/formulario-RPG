@@ -2,18 +2,22 @@ import User from "../schemas/User";
 import UserService from "../service/UserService";
 import Controller, { RequestWithBody, ResponseError } from '../../abstractClasses/controller';
 import { Response } from 'express';
+import AuthService from "../service/AuthService";
+import { userModel } from "../../factory";
 
 
 class UserController extends Controller<User> {
+  private authService: AuthService;
   constructor(
     service: UserService,
   ) {
     super(service);
+    this.authService = new AuthService(userModel);
   }
 
   create = async (
     req: RequestWithBody<User>,
-    res: Response<User | ResponseError>,
+    res: Response<User | ResponseError | string>,
   ): Promise<typeof res> => {
     const { body } = req;
 
@@ -27,8 +31,9 @@ class UserController extends Controller<User> {
       if('error' in user) {
         return res.status(400).json({ error: user.error });
       }
+      const token = this.authService.genToken(user);
 
-      return res.status(201).json(user);
+      return res.status(201).json(token);
     } catch (err) {
       return res.status(500).json({ error: this.errors.internal });
     }
