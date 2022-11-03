@@ -4,6 +4,11 @@ import UserModel from "../model/UserModel";
 import fs from 'fs';
 import { ResponseError } from "../../abstractClasses/controller/";
 
+type ServiceResponse = {
+  code: number,
+  data: any
+}
+
 class AuthService {
   private userModel: UserModel;
   private key: Buffer;
@@ -14,7 +19,8 @@ class AuthService {
   }
 
   genToken = (user: User): string => {
-    return jwt.sign({ user }, this.key);
+    const { name, email } = user;
+    return jwt.sign({ data: { name, email } }, this.key);
   };
 
   authorization = async (user: User): Promise<string | object> => {
@@ -27,14 +33,17 @@ class AuthService {
     return token;
   };
 
-  authentication = (token: string  | undefined): jwt.JwtPayload | string | ResponseError | object => {
-    if(!token) {
-      return { error: 'Token not found' };
-    }
+  authentication = (token: string | undefined): ServiceResponse  => {
     try {
-      return { payload: jwt.verify(token, this.key) };
-    } catch (err) {
-      return { error: 'Invalid token' };
+      if(!token) {
+        return { code: 401, data: 'Token not found'};
+      }
+
+      const decoded = jwt.verify(token, this.key);
+
+      return { code: 200, data: decoded };
+    } catch (err: any) {
+      return { code: 401, data: 'Expired or invalid token'};
     }
   };
 }

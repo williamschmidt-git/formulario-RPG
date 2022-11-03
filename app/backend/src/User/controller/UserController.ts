@@ -95,22 +95,23 @@ class UserController extends Controller<User> {
     //authenticate user
 
     const response = await this.authService.authorization(req.body);
-    return res.status(200).json(response);
+    return res.status(200).json({response});
   };
 
   auth = (
     req: RequestWithBody<User>,
     res: Response<object | ResponseError>,
-  ): typeof res =>{
-    try {
-      const { authorization } = req.headers;
+    next: NextFunction,
+  ): typeof res | void =>{
 
-      const response = this.authService.authentication(authorization);
+    const token = req.headers.authorization;
 
-      return res.status(200).json({ response });
-    } catch (error) {
-      return res.status(500).json({ error: this.errors.internal });
+    const response = this.authService.authentication(token);
+
+    if(response.code !== 200) {
+      res.status(response.code).json({ message: response.data });
     }
+    next();
   };
 }
 
