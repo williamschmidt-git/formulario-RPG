@@ -2,7 +2,7 @@ app/.env
 
 node_modules
 tmp
-build
+app/backend/build
 copilot
 jwt.evaluation.key
 
