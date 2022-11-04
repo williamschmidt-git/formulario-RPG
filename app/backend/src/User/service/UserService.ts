@@ -29,12 +29,21 @@ class UserService extends Service<User> {
   };
 
   findOneAndDelete = async(user: User): Promise<User | null | ServiceError> => {
-  
     return this.model.findOneAndDelete({'name': user.name});
   };
 
   findByEmail = async(user: User): Promise<User | null | ServiceError> => {
     return this.model.findByEmail({'email': user.email});
+  };
+
+  update = async(id: string, obj: User): Promise<User | null | ServiceError> => {
+    const validated = userZodSchema.safeParse(obj);
+
+    if(!validated.success) {
+      return { error: validated.error };
+    }
+
+    return this.model.findByIdAndUpdate(id, obj);
   };
 }
 

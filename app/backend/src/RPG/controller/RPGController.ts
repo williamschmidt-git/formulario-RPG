@@ -79,6 +79,24 @@ class RPGController extends Controller<RPG> {
       return res.status(500).json({ error: this.errors.internal });
     }
   };
+
+  update = async(
+    req: RequestWithBody<RPG>,
+    res: Response<RPG | ResponseError>
+  ): Promise<typeof res> => {
+    const { body } = req;
+    const { id } = req.params;
+
+    try {
+      const response = await this.service.update(id, body);
+
+      return response ? res.json(response) : res.status(404).json({
+        error: this.errors.notFound
+      });
+    } catch (err) {
+      return res.status(500).json({ error: this.errors.internal });
+    }
+  };
 }
 
 export default RPGController;

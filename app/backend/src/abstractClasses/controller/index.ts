@@ -33,10 +33,10 @@ abstract class Controller<T> {
 
   // s
 
-  // abstract update(
-  //   req: RequestWithBody<T & { id: string }>,
-  //   res: Response<T | ResponseError >
-  // ): Promise<typeof res>;
+  abstract update(
+    req: RequestWithBody<T & { id: string }>,
+    res: Response<T | ResponseError >
+  ): Promise<typeof res>;
 
   abstract findOneAndDelete(
     req: Request,

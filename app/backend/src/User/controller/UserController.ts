@@ -113,6 +113,22 @@ class UserController extends Controller<User> {
     }
     next();
   };
+
+  update = async (
+    req: RequestWithBody<User & { id: string }>,
+    res: Response<User | ResponseError>,
+  ): Promise<typeof res>=> {
+    const { body } = req;
+    const { id } = req.params;
+
+    try {
+      const response = await this.service.update(id, body);
+
+      return response ? res.json(response) : res.status(404).json({ error: this.errors.notFound });
+    } catch (error) {
+      return res.status(500).json({ error: this.errors.internal });
+    }
+  };
 }
 
 export default UserController;

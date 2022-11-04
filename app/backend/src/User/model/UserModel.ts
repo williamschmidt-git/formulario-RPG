@@ -10,9 +10,9 @@ interface UserDocument extends User, Document {}
 
 const userMongooseSchema = new Schema<UserDocument>({
   // _id: String,
-  // role: String,
+  role: String,
   name: String,
-  email: String,
+  email: { type: String, unique: true, dropDups: true },
   password: String,
 }, {
   autoCreate: true,

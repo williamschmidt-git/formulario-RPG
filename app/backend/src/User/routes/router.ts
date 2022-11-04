@@ -11,6 +11,8 @@ class UserRouter {
   public addRoute(controller: UserController) {
     this.router.post('/user', controller.create);
     this.router.get('/user', controller.auth, controller.read);
+    this.router.patch('/user/:id', controller.auth, controller.update);
+    this.router.delete('/user/:id', controller.auth, controller.delete);
     // this.router.get('/user/:id', controller.)
   }
 }

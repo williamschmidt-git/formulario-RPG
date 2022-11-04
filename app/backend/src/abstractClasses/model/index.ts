@@ -1,4 +1,4 @@
-import { Model as M, Document } from 'mongoose';
+import { Model as M, Document, UpdateWithAggregationPipeline } from 'mongoose';
 import { Model } from '../../interfaces/ModelInterface';
 
 abstract class MongoModel<T> implements Model<T> {
@@ -11,8 +11,10 @@ abstract class MongoModel<T> implements Model<T> {
   // readOne = async (id: string): Promise<T | null> =>
   //   this.model.findOne({_id: id});
 
-  // update = async (id: string, obj: T):
-  // Promise<T | null> => await this.model.updateOne(id, obj)
+
+  //for future references https://mongoosejs.com/docs/tutorials/findoneandupdate.html
+  findByIdAndUpdate = async (id: string, obj: T):
+  Promise<T | null> => this.model.findByIdAndUpdate(id, obj as unknown as UpdateWithAggregationPipeline, { new: true });
 
   findOneAndDelete = async (filter: object): Promise<T | null> => 
     this.model.findOneAndDelete(filter);
