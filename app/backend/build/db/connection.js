@@ -17,7 +17,8 @@ const connectToDatabase = () =>
 // eslint-disable-next-line max-len
 mongoose_1.default.connect('mongodb+srv://rojao:13tiro@rojao.covwnst.mongodb.net/test', {
     useNewUrlParser: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
+    useCreateIndex: true
 }).then(() => {
     console.log('Foi!!!!!!!!!!!!!!!!!!!!!!!!!');
 })

@@ -1,15 +1,16 @@
 import {
   model as mongooseCreateModel,
   Schema,
-  Document
+  Document,
 } from 'mongoose';
 import User from '../schemas/User';
 import MongoModel from '../../abstractClasses/model';
+// import { any } from 'zod';
 
 interface UserDocument extends User, Document {}
 
 const userMongooseSchema = new Schema<UserDocument>({
-  // _id: String,
+  _id: Schema.Types.ObjectId,
   role: String,
   name: String,
   email: { type: String, unique: true, dropDups: true },

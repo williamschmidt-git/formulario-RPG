@@ -69,6 +69,19 @@ class RPGController extends controller_1.default {
                 return res.status(500).json({ error: this.errors.internal });
             }
         });
+        this.update = (req, res) => __awaiter(this, void 0, void 0, function* () {
+            const { body } = req;
+            const { id } = req.params;
+            try {
+                const response = yield this.service.update(id, body);
+                return response ? res.json(response) : res.status(404).json({
+                    error: this.errors.notFound
+                });
+            }
+            catch (err) {
+                return res.status(500).json({ error: this.errors.internal });
+            }
+        });
     }
 }
 exports.default = RPGController;

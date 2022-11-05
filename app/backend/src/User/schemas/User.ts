@@ -1,6 +1,7 @@
 import { z } from 'zod';
 
 const userZodSchema = z.object({
+  id: z.any().optional(),
   role: z.string(),
   name: z.string({
     required_error: 'name is required',

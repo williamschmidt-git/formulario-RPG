@@ -16,8 +16,8 @@ class MongoModel {
         this.read = () => __awaiter(this, void 0, void 0, function* () { return this.model.find(); });
         // readOne = async (id: string): Promise<T | null> =>
         //   this.model.findOne({_id: id});
-        // update = async (id: string, obj: T):
-        // Promise<T | null> => await this.model.updateOne(id, obj)
+        //for future references https://mongoosejs.com/docs/tutorials/findoneandupdate.html
+        this.findByIdAndUpdate = (id, obj) => __awaiter(this, void 0, void 0, function* () { return this.model.findByIdAndUpdate(id, obj, { new: true }); });
         this.findOneAndDelete = (filter) => __awaiter(this, void 0, void 0, function* () { return this.model.findOneAndDelete(filter); });
         this.delete = (id) => __awaiter(this, void 0, void 0, function* () { return this.model.findByIdAndDelete(id); });
         //findOneAndThrow

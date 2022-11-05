@@ -26,6 +26,7 @@ abstract class MongoModel<T> implements Model<T> {
 
   findByEmail = async(user: object): Promise<T | null> =>
     this.model.findOne(user);
+    
 }
 
 export default MongoModel;

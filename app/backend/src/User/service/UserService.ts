@@ -36,14 +36,37 @@ class UserService extends Service<User> {
     return this.model.findByEmail({'email': user.email});
   };
 
-  update = async(id: string, obj: User): Promise<User | null | ServiceError> => {
+  update = async(id: string, obj: User): Promise<User | null | ServiceError | undefined> => {
     const validated = userZodSchema.safeParse(obj);
 
     if(!validated.success) {
       return { error: validated.error };
     }
 
-    return this.model.findByIdAndUpdate(id, obj);
+    if(UserService.isAdmin(obj)) {
+      console.log(await this.isSameUser(obj, id));
+      return this.model.findByIdAndUpdate(id, obj);
+    }
+  };
+
+  static isAdmin(obj: User): boolean {
+    const { role } = obj;
+
+    if(role === 'admin') {
+      return true;
+    }
+    return false;
+  }
+
+  isSameUser = async (obj: User, id: string): Promise<boolean> => {
+    const { email } = obj;
+
+    const user = await this.model.findByEmail({ email });
+    if(user?.id === id) {
+      return true;
+    } 
+
+    return false;
   };
 }
 

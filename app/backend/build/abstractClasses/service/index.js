@@ -26,9 +26,11 @@ class Service {
     // public async readOne(id: string): Promise<T | null | ServiceError> {
     //   return this.model.readOne(id);
     // }
-    // // public async update(id: string, obj: T): Promise<T | null | ServiceError> {
-    // //   return this.model.update(id, obj);
-    // // }
+    update(id, obj) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return this.model.findByIdAndUpdate(id, obj, { new: true });
+        });
+    }
     delete(id) {
         return __awaiter(this, void 0, void 0, function* () {
             return this.model.delete(id);
