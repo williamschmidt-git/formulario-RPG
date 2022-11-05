@@ -44,7 +44,6 @@ class UserService extends Service<User> {
     }
 
     if(UserService.isAdmin(obj)) {
-      console.log(await this.isSameUser(obj, id));
       return this.model.findByIdAndUpdate(id, obj);
     }
 
