@@ -10,7 +10,7 @@ class RpgRouter {
     this.router = Router();
   }
 
-  public addRoute(controller: Controller<RPG>, validation: Validation<RPG>) {
+  public addRoute(controller: Controller<RPG>, validation: Validation) {
     this.router.post('/rpg', validation.validate, controller.create);
     this.router.get('/', controller.read);
     this.router.delete('/rpg/', controller.findOneAndDelete);

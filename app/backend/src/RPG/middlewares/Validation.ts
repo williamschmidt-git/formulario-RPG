@@ -4,13 +4,6 @@ import Validation from "../../abstractClasses/middleware";
 import RPG, { rpgZodSchema } from "../schemas/RPG";
 
 class RPGValidation extends Validation<RPG> {
-  private schema: RPG;
-
-  constructor(schema: RPG) {
-    super();
-    this.schema = schema;
-  }
-
   public validate(req: RequestWithBody<RPG>, res: Response, next: NextFunction): typeof res | void {
     const parsed = rpgZodSchema.safeParse(req.body);
 
