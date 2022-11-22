@@ -20,9 +20,9 @@ abstract class Service<T> {
   //   return this.model.readOne(id);
   // }
 
-  // // public async update(id: string, obj: T): Promise<T | null | ServiceError> {
-  // //   return this.model.update(id, obj);
-  // // }
+  public async update(id: string, obj: T): Promise<T | null | ServiceError | undefined> {
+    return this.model.findByIdAndUpdate(id, obj, { new: true });
+  }
 
   public async delete(id: string): Promise<T | null | ServiceError> {
     return this.model.delete(id);
@@ -30,9 +30,8 @@ abstract class Service<T> {
 
   public async findOneAndDelete(filter: object):
   Promise<T | null | ServiceError> {
-    return this.model.findOneAndDelete(filter)
-  }
-  
+    return this.model.findOneAndDelete(filter);
+  }  
 }
 
 export default Service;

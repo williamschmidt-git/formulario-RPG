@@ -1,4 +1,4 @@
-import server from './server';
+import server from './factory';
 
 server.startServer();
 

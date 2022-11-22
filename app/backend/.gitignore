@@ -1,5 +1,2 @@
-node_modules
-.env
-build
-../RPG/
-*.wt
+/build/*
+.env*

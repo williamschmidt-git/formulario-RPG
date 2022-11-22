@@ -13,9 +13,9 @@ const rpgZodSchema = z.object({
       attributes: z.unknown()
     }))
   })
-})
+});
 
 type RPG = z.infer<typeof rpgZodSchema>
 
 export default RPG;
-export { rpgZodSchema }
+export { rpgZodSchema };

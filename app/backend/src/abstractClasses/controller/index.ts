@@ -27,19 +27,16 @@ abstract class Controller<T> {
   ): Promise<typeof res>;
 
   abstract read(
-    _req: Request,
+    req: Request,
     res: Response<T[] | ResponseError>,
   ): Promise<typeof res>;
 
-  // abstract readOne(
-  //   req: Request<{ id: string }>,
-  //   res: Response<T | ResponseError>
-  // ): Promise<typeof res>;
+  // s
 
-  // abstract update(
-  //   req: RequestWithBody<T & { id: string }>,
-  //   res: Response<T | ResponseError >
-  // ): Promise<typeof res>;
+  abstract update(
+    req: RequestWithBody<T & { id: string }>,
+    res: Response<T | ResponseError >
+  ): Promise<typeof res>;
 
   abstract findOneAndDelete(
     req: Request,
