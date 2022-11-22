@@ -1,4 +1,5 @@
 import App from './app';
+import Validation from './RPG/middlewares/Validation';
 import RPGController from './RPG/controller/RPGController';
 import RPGService from './RPG/service/RPGService';
 import RPGModel from './RPG/model/RpgModel';

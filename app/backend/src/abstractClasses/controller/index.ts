@@ -27,7 +27,7 @@ abstract class Controller<T> {
   ): Promise<typeof res>;
 
   abstract read(
-    _req: Request,
+    req: Request,
     res: Response<T[] | ResponseError>,
   ): Promise<typeof res>;
 

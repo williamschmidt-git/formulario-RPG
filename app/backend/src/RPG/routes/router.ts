@@ -1,5 +1,6 @@
 import { Router } from "express";
 import Controller from "../../abstractClasses/controller";
+import Validation from "../middlewares/Validation";
 import RPG from "../schemas/RPG";
 
 class RpgRouter {
@@ -9,8 +10,8 @@ class RpgRouter {
     this.router = Router();
   }
 
-  public addRoute(controller: Controller<RPG>) {
-    this.router.post('/rpg', controller.create);
+  public addRoute(controller: Controller<RPG>, validation: Validation<RPG>) {
+    this.router.post('/rpg', validation.validate, controller.create);
     this.router.get('/', controller.read);
     this.router.delete('/rpg/', controller.findOneAndDelete);
   }
