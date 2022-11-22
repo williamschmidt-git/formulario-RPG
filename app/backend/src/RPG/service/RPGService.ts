@@ -1,5 +1,5 @@
 import Service, { ServiceError } from '../../abstractClasses/service';
-import RPG, { rpgZodSchema }  from '../schemas/RPG';
+import RPG from '../schemas/RPG';
 import RPGModel from '../model/RpgModel';
 
 class RPGService extends Service<RPG> {
@@ -8,18 +8,11 @@ class RPGService extends Service<RPG> {
   }
 
   create = async(obj: RPG): Promise<RPG | null | ServiceError> => {
-    const parsed = rpgZodSchema.safeParse(obj);
-
-    if(!parsed.success) {
-      return { error: parsed.error};
-    }
-
     return this.model.create(obj);
   };
 
   read = async(): Promise<RPG[]> => {
     const rpgs = this.model.read();
-
     return rpgs;
   };
 

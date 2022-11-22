@@ -2,7 +2,6 @@ import User from "../schemas/User";
 import jwt from 'jsonwebtoken';
 import UserModel from "../model/UserModel";
 import fs from 'fs';
-import { ResponseError } from "../../abstractClasses/controller/";
 
 type ServiceResponse = {
   code: number,

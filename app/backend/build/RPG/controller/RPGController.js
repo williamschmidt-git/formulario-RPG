@@ -18,69 +18,44 @@ class RPGController extends controller_1.default {
         super(service);
         this.create = (req, res) => __awaiter(this, void 0, void 0, function* () {
             const { body } = req;
-            try {
-                const rpg = yield this.service.create(body);
-                if (!rpg) {
-                    return res.status(500).json({ error: this.errors.internal });
-                }
-                if ('error' in rpg) {
-                    return res.status(400).json({ error: rpg.error });
-                }
-                return res.status(201).json(rpg);
-            }
-            catch (err) {
+            const rpg = yield this.service.create(body);
+            if (!rpg) {
                 return res.status(500).json({ error: this.errors.internal });
             }
+            if ('error' in rpg) {
+                return res.status(400).json({ error: rpg.error });
+            }
+            return res.status(201).json(rpg);
         });
         this.read = (req, res) => __awaiter(this, void 0, void 0, function* () {
-            try {
-                const rpgs = yield this.service.read();
-                if (!rpgs) {
-                    return res.status(404).json({ error: this.errors.notFound });
-                }
-                return res.status(200).json(rpgs);
+            const rpgs = yield this.service.read();
+            if (!rpgs) {
+                return res.status(404).json({ error: this.errors.notFound });
             }
-            catch (err) {
-                return res.status(500).json({ error: this.errors.internal });
-            }
+            return res.status(200).json(rpgs);
         });
         this.delete = (req, res) => __awaiter(this, void 0, void 0, function* () {
-            try {
-                const { id } = req.params;
-                const rpg = yield this.service.delete(id);
-                if (!rpg) {
-                    res.status(404).json({ error: this.errors.notFound });
-                }
-                return res.status(204).end();
+            const { id } = req.params;
+            const rpg = yield this.service.delete(id);
+            if (!rpg) {
+                res.status(404).json({ error: this.errors.notFound });
             }
-            catch (err) {
-                return res.status(500).json({ error: this.errors.internal });
-            }
+            return res.status(204).end();
         });
         this.findOneAndDelete = (req, res) => __awaiter(this, void 0, void 0, function* () {
-            try {
-                const rpg = yield this.service.findOneAndDelete(req.body);
-                if (!rpg) {
-                    res.status(404).json({ error: this.errors.notFound });
-                }
-                return res.status(200).end();
+            const rpg = yield this.service.findOneAndDelete(req.body);
+            if (!rpg) {
+                res.status(404).json({ error: this.errors.notFound });
             }
-            catch (error) {
-                return res.status(500).json({ error: this.errors.internal });
-            }
+            return res.status(200).end();
         });
         this.update = (req, res) => __awaiter(this, void 0, void 0, function* () {
             const { body } = req;
             const { id } = req.params;
-            try {
-                const response = yield this.service.update(id, body);
-                return response ? res.json(response) : res.status(404).json({
-                    error: this.errors.notFound
-                });
-            }
-            catch (err) {
-                return res.status(500).json({ error: this.errors.internal });
-            }
+            const response = yield this.service.update(id, body);
+            return response ? res.json(response) : res.status(404).json({
+                error: this.errors.notFound
+            });
         });
     }
 }

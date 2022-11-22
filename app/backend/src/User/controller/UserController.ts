@@ -21,79 +21,61 @@ class UserController extends Controller<User> {
   ): Promise<typeof res> => {
     const { body } = req;
 
-    try {
-      const user = await this.service.create(body);
-      const { name, email } = body;
+    const user = await this.service.create(body);
+    const { name, email } = body;
 
-      if(!user) {
-        return res.status(500).json({ error: this.errors.internal});
-      }
-
-      if('error' in user) {
-        return res.status(400).json({ error: user.error });
-      }
-
-      const token = this.authService.genToken(user);
-
-      return res.status(201).json({ name, email, token});
-    } catch (err) {
-      return res.status(500).json({ error: this.errors.internal });
+    if(!user) {
+      return res.status(500).json({ error: this.errors.internal});
     }
+
+    if('error' in user) {
+      return res.status(400).json({ error: user.error });
+    }
+
+    const token = this.authService.genToken(user);
+
+    return res.status(201).json({ name, email, token});
   };
 
   read = async (
     req: RequestWithBody<User>,
     res: Response<User[] | ResponseError>,
   ): Promise<typeof res> => {
-    try {
-      const users = await this.service.read();
+    const users = await this.service.read();
 
-      if(!users) {
-        return res.status(404).json({error: this.errors.notFound });
-      }
-
-      return res.status(200).json(users);
-    } catch (err) {
-      return res.status(500).json({error: this.errors.internal });
+    if(!users) {
+      return res.status(404).json({error: this.errors.notFound });
     }
+
+    return res.status(200).json(users);
   };
 
   delete = async (
     req: RequestWithBody<User>,
     res: Response<User | ResponseError>): Promise<typeof res> => {
-    try {
-      const { id } = req.params;
-      const user = await this.service.delete(id);
+    const { id } = req.params;
+    const user = await this.service.delete(id);
 
-      if(!user) {res.status(404).json({ error: this.errors.notFound });}
+    if(!user) {res.status(404).json({ error: this.errors.notFound });}
 
-      return res.status(204).end();
-    } catch (err) {
-      return res.status(500).json({ error: this.errors.internal });
-    }
+    return res.status(204).end();
   };
 
   findOneAndDelete = async (
     req: RequestWithBody<User>,
     res: Response<User | ResponseError>
   ): Promise<typeof res> => {
-    try {
-      const user = await this.service.findOneAndDelete(req.body);
+    const user = await this.service.findOneAndDelete(req.body);
 
-      if(!user) {res.status(404).json({ error: this.errors.notFound });}
+    if(!user) {res.status(404).json({ error: this.errors.notFound });}
 
-      return res.status(200).end();
-    } catch (error) {
-      return res.status(500).json({ error: this.errors.internal });
-    }
+    return res.status(200).end();
   };
 
   login = async(
     req: RequestWithBody<User>,
     res: Response<User | ResponseError| string | object>
   ): Promise<typeof res> => {
-    //authenticate user
-
     const response = await this.authService.authorization(req.body);
     return res.status(200).json({response});
   };
@@ -121,13 +103,10 @@ class UserController extends Controller<User> {
     const { body } = req;
     const { id } = req.params;
 
-    try {
-      const response = await this.service.update(id, body);
+    const response = await this.service.update(id, body);
 
-      return response ? res.json(response) : res.status(404).json({ error: this.errors.notFound });
-    } catch (error) {
-      return res.status(500).json({ error: this.errors.internal });
-    }
+    return response ? res.json(response) : res.status(404).json({ error: this.errors.notFound });
+
   };
 }
 

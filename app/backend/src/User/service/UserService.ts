@@ -9,12 +9,6 @@ class UserService extends Service<User> {
   }
 
   create = async(obj: User): Promise<User | null | ServiceError> => {
-    const parsedUser = userZodSchema.safeParse(obj);
-
-    if(!parsedUser.success) {
-      return { error: parsedUser.error };
-    }
-
     return this.model.create(obj);
   };
 

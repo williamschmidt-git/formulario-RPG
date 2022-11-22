@@ -5,7 +5,6 @@ import {
 } from 'mongoose';
 import User from '../schemas/User';
 import MongoModel from '../../abstractClasses/model';
-// import { any } from 'zod';
 
 interface UserDocument extends User, Document {}
 

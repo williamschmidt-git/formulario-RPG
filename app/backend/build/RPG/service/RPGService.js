@@ -13,16 +13,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const service_1 = __importDefault(require("../../abstractClasses/service"));
-const RPG_1 = require("../schemas/RPG");
 class RPGService extends service_1.default {
     constructor(model) {
         super(model);
         this.model = model;
         this.create = (obj) => __awaiter(this, void 0, void 0, function* () {
-            const parsed = RPG_1.rpgZodSchema.safeParse(obj);
-            if (!parsed.success) {
-                return { error: parsed.error };
-            }
             return this.model.create(obj);
         });
         this.read = () => __awaiter(this, void 0, void 0, function* () {
