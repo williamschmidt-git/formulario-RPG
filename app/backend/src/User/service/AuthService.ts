@@ -1,7 +1,9 @@
+import * as dotenv from 'dotenv';
 import User from "../schemas/User";
-import jwt from 'jsonwebtoken';
+import jwt, { Secret } from 'jsonwebtoken';
 import UserModel from "../model/UserModel";
-import fs from 'fs';
+
+dotenv.config();
 
 type ServiceResponse = {
   code: number,
@@ -14,12 +16,11 @@ class AuthService {
 
   constructor(userModel: UserModel) {
     this.userModel = userModel;
-    this.key = fs.readFileSync('jwt.evaluation.key');
   }
 
   genToken = (user: User): string => {
     const { name, email } = user;
-    return jwt.sign({ data: { name, email } }, this.key);
+    return jwt.sign({ data: { name, email } }, process.env.SECRET as Secret);
   };
 
   authorization = async (user: User): Promise<string | object> => {
@@ -38,7 +39,7 @@ class AuthService {
         return { code: 401, data: 'Token not found'};
       }
 
-      const decoded = jwt.verify(token, this.key);
+      const decoded = jwt.verify(token, process.env.SECRET as Secret);
 
       return { code: 200, data: decoded };
     } catch (err: any) {
