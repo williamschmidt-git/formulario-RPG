@@ -11,6 +11,9 @@ module.exports = {
     'prettier/@typescript-eslint',
     'prettier/standard',
     'prettier/react',
+    "plugin:import/errors", 
+    "plugin:import/warnings",
+    "plugin:import/typescript",
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
